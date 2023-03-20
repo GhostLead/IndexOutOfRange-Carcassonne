@@ -15,47 +15,43 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CarcassonneVerseny
+
+
+namespace Carcassonne
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
-	public partial class MainWindow : Window
-	{
-		public MainWindow()
-		{
-			InitializeComponent();
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
 
-			ugTabla.Rows = 8;
-			ugTabla.Columns = 5;
+            ugTabla.Rows = 8;
+            ugTabla.Columns = 5;
 
-			for (int i = 0; i < 40; i++)
-			{
-				Button gomb1 = new Button();
-				gomb1.Background = Brushes.Green;
-				gomb1.Name = $"btnGomb{i}";
-				gomb1.Width = 50;
-				gomb1.Height = 50;
-				gomb1.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(Button_Click));
-				Canvas rajzLap = new Canvas();
-				Thickness margo = rajzLap.Margin;
-				margo.Left = 3;
-				rajzLap.Margin = margo;
-				rajzLap.Children.Add(gomb1);
-				ugTabla.Children.Add(rajzLap);
-			}
-		}
+            for (int i = 0; i < 40; i++)
+            {
+                Button gomb1 = new Button();
+                gomb1.Background = Brushes.Green;
+                gomb1.Name = $"btnGomb{i}";
+                gomb1.Width = 50;
+                gomb1.Height = 50;
+                gomb1.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(Button_Click));
+                ugTabla.Children.Add(gomb1);
+                
+            }
+        }
 
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-			szoveg.Content = ((FrameworkElement)e.Source).Name;
-			((FrameworkElement)sender).Visibility = Visibility.Hidden;
-
-			var valami = ((FrameworkElement)sender).Parent.GetType();
-		}
-	}
-
-
-
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            BitmapImage bitimg = new BitmapImage();
+            bitimg.BeginInit();
+            bitimg.UriSource = new Uri(@"CastleEdge3.png", UriKind.RelativeOrAbsolute);
+            bitimg.EndInit();
+            szoveg.Content = ((FrameworkElement)e.Source).Name;
+            ((Button)(FrameworkElement)sender).Background = new ImageBrush(bitimg);
+        }
+    }
 }
