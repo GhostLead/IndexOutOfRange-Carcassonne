@@ -29,7 +29,7 @@ namespace Carcassonne
             InitializeComponent();
             BitmapImage bitimg = new BitmapImage();
             bitimg.BeginInit();
-            bitimg.UriSource = new Uri(@"Kepek\Background2.png", UriKind.RelativeOrAbsolute);
+            bitimg.UriSource = new Uri(@"Backgrounds\Background2.png", UriKind.RelativeOrAbsolute);
             bitimg.EndInit();
             this.Background = new ImageBrush(bitimg);
 
@@ -51,7 +51,7 @@ namespace Carcassonne
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Carcassonne"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
+        Title="MainWindow" Height="768" Width="1280">
 
 
 
     <Grid x:Name="grid">
 
-        <UniformGrid Name="ugTabla" Background="SaddleBrown" Margin="5,5,500,5">
+        <UniformGrid Name="ugTabla" Background="SaddleBrown" Margin=" 10 10 790 10 ">
 
         </UniformGrid>
-        <Expander x:Name="expSidebar" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top"  Height="200" ExpandDirection="Left">
+        <Expander x:Name="expSidebar" HorizontalAlignment="Right" VerticalAlignment="Top" ExpandDirection="Left">
             <StackPanel Orientation="Vertical">
                 <Button x:Name="btnSave" Background="BlueViolet" Foreground="White" Content="Mentés" FontSize="17" FontWeight="Bold" Width="100" Height="50" Margin=" 0 0 0 10 " BorderBrush="Black" OpacityMask="#FF906F6F" ForceCursor="True"/>
                 <Button x:Name="btnSettings"  Background="BlueViolet" Foreground="White" Content="Beállítások" FontSize="17" FontWeight="Bold" Width="100" Height="50" Margin=" 0 0 0 10 "/>
@@ -22,10 +22,11 @@
             </StackPanel>
 
         </Expander>
-        
-        <Rectangle x:Name="rctLeforditottKartya" Stroke="Black" Margin="376,26,257,291" StrokeThickness="4"/>
-        <Rectangle x:Name="rctFelforditottKartya" Stroke="Black" Margin="376,231,257,86"  StrokeThickness="4"/>
-        <Button x:Name="btnMainMenu" Content="MainMenu" FontSize="16" HorizontalAlignment="Left" Margin="609,295,0,0" VerticalAlignment="Top" Height="45" Width="101" Click="btnMainMenu_Click"/>
+
+        <Rectangle x:Name="rctLeforditottKartya" Stroke="Black" HorizontalAlignment="Right" VerticalAlignment="Center" Margin=" 0 -360 415 0 " Width="220" Height="220" StrokeThickness="4"/>
+        <Rectangle x:Name="rctFelforditottKartya" Stroke="Black" HorizontalAlignment="Right" VerticalAlignment="Center" Margin=" 0 150 415 0 "  Width="220" Height="220" StrokeThickness="4"/>
+        <Button x:Name="btnMainMenu" Content="MainMenu" FontSize="40" FontWeight="DemiBold" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="200" Height="80" Click="btnMainMenu_Click"/>
+        <Button Content="Adj Képet" FontSize="40" FontWeight="DemiBold" Margin=" 0 0 0 100 " HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="200" Height="80" Click="Button_Click_1"/>
 
     </Grid>
 </Window>
