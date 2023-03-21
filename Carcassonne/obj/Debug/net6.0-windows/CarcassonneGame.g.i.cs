@@ -165,7 +165,7 @@ namespace Carcassonne {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Carcassonne;component/carcassonnegame.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Carcassonne;V1.0.0.0;component/carcassonnegame.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\CarcassonneGame.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

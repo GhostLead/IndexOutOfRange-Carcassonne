@@ -52,6 +52,7 @@ namespace Carcassonne
             string folder = @"Kepek";
             string[] files = Directory.GetFiles(folder);
 
+
             string generaltNev = files[rnd.Next(files.Length)];
 
 
