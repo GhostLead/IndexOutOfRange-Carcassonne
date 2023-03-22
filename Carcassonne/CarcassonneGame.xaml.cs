@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Runtime.Intrinsics.X86;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,6 +29,7 @@ namespace Carcassonne
     /// </summary>
     public partial class CarcassoneGame : Window
     {
+        
         bool isNavbarDropped = false;
         public CarcassoneGame()
         {
@@ -42,11 +44,12 @@ namespace Carcassonne
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            var pushedButton = ((Button)(FrameworkElement)sender);
 
             List<Button> buttons = new List<Button>();
-            buttons.Append(((Button)(FrameworkElement)sender));
-			
-			((Button)(FrameworkElement)sender).Background = rctFelforditottKartya.Fill;
+            buttons.Append(pushedButton);
+
+            pushedButton.Background = rctFelforditottKartya.Fill;
 
             Random rnd = new Random();
             string folder = @"Kepek";
@@ -64,6 +67,8 @@ namespace Carcassonne
 
             CardPlacementSound();
             rctFelforditottKartya.Fill = new ImageBrush(bitimg);
+            pushedButton.RemoveHandler(ButtonBase.ClickEvent, new RoutedEventHandler(Button_Click));
+            pushedButton.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OccupiedTileErrorMessage));
 
         }
 
@@ -134,6 +139,11 @@ namespace Carcassonne
             
         }
 
+        private void OccupiedTileErrorMessage(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Ez a mező már foglalt! Válassz másikat!", "Foglalt mező", MessageBoxButton.OK,MessageBoxImage.Error);
+        }
+
         private void CardPlacementSound()
         {             
             SoundPlayer soundPlayer = new SoundPlayer("Card-Flip-Sound.wav");
@@ -148,6 +158,8 @@ namespace Carcassonne
             bitBackground.UriSource = new Uri(@"Egyeb\Null0.png", UriKind.RelativeOrAbsolute);
             bitBackground.EndInit();
             rctLeforditottKartya.Fill = new ImageBrush(bitBackground);
+            rctFelforditottKartyaFent.Fill = new ImageBrush(bitBackground);
+            rctFelforditottKartyaKozep.Fill = new ImageBrush(bitBackground);
 
             var fileCount = (from file in Directory.EnumerateFiles(@"Kepek\", "*.png", SearchOption.AllDirectories)
                              select file).Count();
@@ -192,5 +204,7 @@ namespace Carcassonne
             btnSettings.Visibility = Visibility.Visible;
             btnExit.Visibility = Visibility.Visible;
         }
+
     }
+
 }

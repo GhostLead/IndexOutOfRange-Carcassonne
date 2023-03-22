@@ -21,3 +21,26 @@ C:\Users\Handsome Lucifer\source\repos\Carcassonne\Carcassonne\obj\Debug\net6.0-
 C:\Users\Handsome Lucifer\source\repos\Carcassonne\Carcassonne\obj\Debug\net6.0-windows\Mainwindow.baml
 C:\Users\Handsome Lucifer\source\repos\Carcassonne\Carcassonne\obj\Debug\net6.0-windows\CarcassonneGame.g.cs
 C:\Users\Handsome Lucifer\source\repos\Carcassonne\Carcassonne\obj\Debug\net6.0-windows\CarcassonneGame.baml
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\bin\Debug\net6.0-windows\Carcassonne.exe
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\bin\Debug\net6.0-windows\Carcassonne.deps.json
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\bin\Debug\net6.0-windows\Carcassonne.runtimeconfig.json
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\bin\Debug\net6.0-windows\Carcassonne.dll
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\bin\Debug\net6.0-windows\Carcassonne.pdb
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\Carcassonne.csproj.AssemblyReference.cache
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\CarcassonneGame.g.cs
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\Mainwindow.g.cs
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\App.g.cs
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\Carcassonne_MarkupCompile.cache
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\Carcassonne_MarkupCompile.lref
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\CarcassonneGame.baml
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\Mainwindow.baml
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\Carcassonne.g.resources
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\Carcassonne.GeneratedMSBuildEditorConfig.editorconfig
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\Carcassonne.AssemblyInfoInputs.cache
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\Carcassonne.AssemblyInfo.cs
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\Carcassonne.csproj.CoreCompileInputs.cache
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\Carcassonne.dll
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\refint\Carcassonne.dll
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\Carcassonne.pdb
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\Carcassonne.genruntimeconfig.cache
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\ref\Carcassonne.dll
