@@ -279,8 +279,38 @@ namespace Carcassonne
 			}
 		}
         
-        public void Ellenoriz(Button gomb)
-        {
+		public void LeRakas(Button gomb)
+		{
+			gomb.Background = rctFelforditottKartya.Fill;
+			Random rnd = new Random();
+			string folder = @"Kepek";
+			string[] files = Directory.GetFiles(folder);
+
+
+			string generaltNev = files[rnd.Next(files.Length)];
+
+			string[] segedTombElso = generaltNev.Split('\\');
+			string[] segedTombMasodik = segedTombElso[1].Split('.');
+
+
+
+			BitmapImage bitimg = new BitmapImage();
+			bitimg.BeginInit();
+			bitimg.UriSource = new Uri(@$"{generaltNev}", UriKind.RelativeOrAbsolute);
+			bitimg.EndInit();
+
+
+
+			CardPlacementSound();
+			rctFelforditottKartya.Fill = new ImageBrush(bitimg);
+			gomb.RemoveHandler(ButtonBase.ClickEvent, new RoutedEventHandler(Button_Click));
+			gomb.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OccupiedTileErrorMessage));
+
+
+			JelenlegiKartya = segedTombMasodik[0];
+		}
+		public void Ellenoriz(Button gomb)
+		{
 			var pushedButton = gomb;
 
 
@@ -293,17 +323,17 @@ namespace Carcassonne
 			string[] tombKetto = gomb.Name.Split("k");
 			int index = Convert.ToInt32(tombKetto[1]);
 			KartyaTomb[index] = generaltKartya.Nev;
-			
+
 
 			bool vanFent = false;
-            bool vanJobb = false;
-            bool vanLent = false;
-            bool vanBal = false;
+			bool vanJobb = false;
+			bool vanLent = false;
+			bool vanBal = false;
 
-            bool FentiEllenorzes = false;
-            bool JobbOldaliEllenorzes = false;
-            bool LentiEllenorzes = false;
-            bool BalOldaliEllenorzes = false;
+			bool FentiEllenorzes = false;
+			bool JobbOldaliEllenorzes = false;
+			bool LentiEllenorzes = false;
+			bool BalOldaliEllenorzes = false;
 
 			if (KartyaTomb[index - 5] != "0")
 			{
@@ -322,91 +352,67 @@ namespace Carcassonne
 			{
 				vanBal = true;
 			}
-            
+
 			if (vanFent == false && vanJobb == false && vanLent == false && vanBal == false)
-            {
-                KartyaTomb[index] = "0";
-                lista.Remove(generaltKartya);
+			{
+				KartyaTomb[index] = "0";
+				lista.Remove(generaltKartya);
 				MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
 			}
-            
-            else
-            {
-                if (vanFent)
-                {
-                    if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
-                    {
-                        FentiEllenorzes = true;
 
-                    }
+			else
+			{
+				if (vanFent)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
 
-                }
-                if (vanJobb)
-                {
-                    if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
-                    {
-                        JobbOldaliEllenorzes = true;
+					}
 
-                    }
+				}
+				if (vanJobb)
+				{
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
 
-                }
-                if (vanLent)
-                {
-                    if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
-                    {
-                        LentiEllenorzes = true;
+					}
 
-                    }
-                }
-                if (vanBal)
-                {
-                    if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
-                    {
+				}
+				if (vanLent)
+				{
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+				}
+				if (vanBal)
+				{
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
 						BalOldaliEllenorzes = true;
 					}
-                }
-
-                if (FentiEllenorzes == false && JobbOldaliEllenorzes == false && LentiEllenorzes == false && BalOldaliEllenorzes == false)
-                {
-					KartyaTomb[index] = "0";
-					lista.Remove(generaltKartya);
-					MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
 				}
-                else
-                {
-				    pushedButton.Background = rctFelforditottKartya.Fill;
-				    Random rnd = new Random();
-			        string folder = @"Kepek";
-			        string[] files = Directory.GetFiles(folder);
-
-
-			        string generaltNev = files[rnd.Next(files.Length)];
-
-			        string[] segedTombElso = generaltNev.Split('\\');
-			        string[] segedTombMasodik = segedTombElso[1].Split('.');
+			}
 
 
 
-			        BitmapImage bitimg = new BitmapImage();
-			        bitimg.BeginInit();
-			        bitimg.UriSource = new Uri(@$"{generaltNev}", UriKind.RelativeOrAbsolute);
-			        bitimg.EndInit();
 
+			if (FentiEllenorzes == false && JobbOldaliEllenorzes == false && LentiEllenorzes == false && BalOldaliEllenorzes == false)
+			{
+				KartyaTomb[index] = "0";
+				lista.Remove(generaltKartya);
+				MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+			}
+			else
+			{
+				LeRakas(pushedButton);
 
-
-			        CardPlacementSound();
-			        rctFelforditottKartya.Fill = new ImageBrush(bitimg);
-			        gomb.RemoveHandler(ButtonBase.ClickEvent, new RoutedEventHandler(Button_Click));
-			        gomb.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OccupiedTileErrorMessage));
-
-
-			        JelenlegiKartya = segedTombMasodik[0];
-
-                }
-
-            }
+			}
 
 		}
-        
+
 	}
 }
