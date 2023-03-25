@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tomi\\Desktop\\IndexOutOfRange-Carcassonne-main\\Carcassonne\\Carcassonne.csproj": {}
+    "C:\\Users\\Tomi\\Documents\\GitHub\\IndexOutOfRange-Carcassonne\\Carcassonne\\Carcassonne.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tomi\\Desktop\\IndexOutOfRange-Carcassonne-main\\Carcassonne\\Carcassonne.csproj": {
+    "C:\\Users\\Tomi\\Documents\\GitHub\\IndexOutOfRange-Carcassonne\\Carcassonne\\Carcassonne.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tomi\\Desktop\\IndexOutOfRange-Carcassonne-main\\Carcassonne\\Carcassonne.csproj",
+        "projectUniqueName": "C:\\Users\\Tomi\\Documents\\GitHub\\IndexOutOfRange-Carcassonne\\Carcassonne\\Carcassonne.csproj",
         "projectName": "Carcassonne",
-        "projectPath": "C:\\Users\\Tomi\\Desktop\\IndexOutOfRange-Carcassonne-main\\Carcassonne\\Carcassonne.csproj",
+        "projectPath": "C:\\Users\\Tomi\\Documents\\GitHub\\IndexOutOfRange-Carcassonne\\Carcassonne\\Carcassonne.csproj",
         "packagesPath": "C:\\Users\\Tomi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tomi\\Desktop\\IndexOutOfRange-Carcassonne-main\\Carcassonne\\obj\\",
+        "outputPath": "C:\\Users\\Tomi\\Documents\\GitHub\\IndexOutOfRange-Carcassonne\\Carcassonne\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

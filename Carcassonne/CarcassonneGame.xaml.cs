@@ -52,46 +52,7 @@ namespace Carcassonne
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var pushedButton = ((Button)(FrameworkElement)sender);
-
-
-			pushedButton.Background = rctFelforditottKartya.Fill;
-
-			string[] tomb = JelenlegiKartya.Split('_');
-
-			kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya);
-			lista.Add(generaltKartya);
-
-			string[] tombKetto = ((Button)(FrameworkElement)sender).Name.Split("k");
-			int index = Convert.ToInt32(tombKetto[1]);
-			KartyaTomb[index] = generaltKartya.Nev;
-
-			Random rnd = new Random();
-			string folder = @"Kepek";
-			string[] files = Directory.GetFiles(folder);
-
-
-			string generaltNev = files[rnd.Next(files.Length)];
-
-			string[] segedTombElso = generaltNev.Split('\\');
-			string[] segedTombMasodik = segedTombElso[1].Split('.');
-
-
-
-			BitmapImage bitimg = new BitmapImage();
-            bitimg.BeginInit();
-            bitimg.UriSource = new Uri(@$"{generaltNev}", UriKind.RelativeOrAbsolute);
-            bitimg.EndInit();
-
-
-			
-			CardPlacementSound();
-            rctFelforditottKartya.Fill = new ImageBrush(bitimg);
-            pushedButton.RemoveHandler(ButtonBase.ClickEvent, new RoutedEventHandler(Button_Click));
-            pushedButton.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OccupiedTileErrorMessage));
-
-
-			JelenlegiKartya = segedTombMasodik[0];
+            Ellenoriz(((Button)(FrameworkElement)sender));
 
 		}
 
@@ -208,20 +169,30 @@ namespace Carcassonne
             ugTabla.Rows = 8;
             ugTabla.Columns = 5;
 
+			for (int i = 0; i < KartyaTomb.Length; i++)
+			{
+				KartyaTomb[i] = '0'.ToString();
+			}
             for (int i = 0; i < ugTabla.Rows * ugTabla.Columns; i++)
             {
                 Button gomb1 = new Button();
                 gomb1.Background = Brushes.ForestGreen;
                 gomb1.Name = $"btnTeruletek{i}";
+                if (i == 17)
+                {
+					BitmapImage bitimg = new BitmapImage();
+					bitimg.BeginInit();
+					bitimg.UriSource = new Uri(@"Kepek\U_R_U_R_S.png", UriKind.RelativeOrAbsolute);
+					bitimg.EndInit();
+					gomb1.Background = new ImageBrush(bitimg);
+                    KartyaTomb[i] = "U_R_U_R_S";
+
+				}
+
                 gomb1.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(Button_Click));
                 ugTabla.Children.Add(gomb1);
 
             }
-
-			for (int i = 0; i < KartyaTomb.Length; i++)
-			{
-				KartyaTomb[i] = '0'.ToString();
-			}
 		}
 
         private void NavbarButtonsHidden()
@@ -307,5 +278,135 @@ namespace Carcassonne
 				}
 			}
 		}
+        
+        public void Ellenoriz(Button gomb)
+        {
+			var pushedButton = gomb;
+
+
+
+			string[] tomb = JelenlegiKartya.Split('_');
+
+			kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya);
+			lista.Add(generaltKartya);
+
+			string[] tombKetto = gomb.Name.Split("k");
+			int index = Convert.ToInt32(tombKetto[1]);
+			KartyaTomb[index] = generaltKartya.Nev;
+			
+
+			bool vanFent = false;
+            bool vanJobb = false;
+            bool vanLent = false;
+            bool vanBal = false;
+
+            bool FentiEllenorzes = false;
+            bool JobbOldaliEllenorzes = false;
+            bool LentiEllenorzes = false;
+            bool BalOldaliEllenorzes = false;
+
+			if (KartyaTomb[index - 5] != "0")
+			{
+				vanFent = true;
+			}
+			if (KartyaTomb[index + 1] != "0")
+			{
+				vanJobb = true;
+			}
+			if (KartyaTomb[index + 5] != "0")
+			{
+				vanLent = true;
+			}
+
+			if (KartyaTomb[index - 1] != "0")
+			{
+				vanBal = true;
+			}
+            
+			if (vanFent == false && vanJobb == false && vanLent == false && vanBal == false)
+            {
+                KartyaTomb[index] = "0";
+                lista.Remove(generaltKartya);
+				MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
+			}
+            
+            else
+            {
+                if (vanFent)
+                {
+                    if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+                    {
+                        FentiEllenorzes = true;
+
+                    }
+
+                }
+                if (vanJobb)
+                {
+                    if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+                    {
+                        JobbOldaliEllenorzes = true;
+
+                    }
+
+                }
+                if (vanLent)
+                {
+                    if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+                    {
+                        LentiEllenorzes = true;
+
+                    }
+                }
+                if (vanBal)
+                {
+                    if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+                    {
+						BalOldaliEllenorzes = true;
+					}
+                }
+
+                if (FentiEllenorzes == false && JobbOldaliEllenorzes == false && LentiEllenorzes == false && BalOldaliEllenorzes == false)
+                {
+					KartyaTomb[index] = "0";
+					lista.Remove(generaltKartya);
+					MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+				}
+                else
+                {
+				    pushedButton.Background = rctFelforditottKartya.Fill;
+				    Random rnd = new Random();
+			        string folder = @"Kepek";
+			        string[] files = Directory.GetFiles(folder);
+
+
+			        string generaltNev = files[rnd.Next(files.Length)];
+
+			        string[] segedTombElso = generaltNev.Split('\\');
+			        string[] segedTombMasodik = segedTombElso[1].Split('.');
+
+
+
+			        BitmapImage bitimg = new BitmapImage();
+			        bitimg.BeginInit();
+			        bitimg.UriSource = new Uri(@$"{generaltNev}", UriKind.RelativeOrAbsolute);
+			        bitimg.EndInit();
+
+
+
+			        CardPlacementSound();
+			        rctFelforditottKartya.Fill = new ImageBrush(bitimg);
+			        gomb.RemoveHandler(ButtonBase.ClickEvent, new RoutedEventHandler(Button_Click));
+			        gomb.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OccupiedTileErrorMessage));
+
+
+			        JelenlegiKartya = segedTombMasodik[0];
+
+                }
+
+            }
+
+		}
+        
 	}
 }

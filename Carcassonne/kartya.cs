@@ -15,11 +15,11 @@ namespace Carcassonne
 		char miBal;
 		char miKozep;
 
-		public kartya(char miFel, char miLe, char miJobb, char miBal, char miKozep, string nev)
+		public kartya(char miFel, char miJobb, char miLe, char miBal, char miKozep, string nev)
 		{
 			this.MiFel = miFel;
-			this.MiLe = miLe;
 			this.MiJobb = miJobb;
+			this.MiLe = miLe;
 			this.MiBal = miBal;
 			this.MiKozep = miKozep;
 			this.nev = nev;
