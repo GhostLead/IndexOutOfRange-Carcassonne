@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Reflection;
 using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -29,8 +30,13 @@ namespace Carcassonne
     /// </summary>
     public partial class CarcassoneGame : Window
     {
-        
-        bool isNavbarDropped = false;
+		List<kartya> lista = new List<kartya>();
+
+		string[] KartyaTomb = new string[40];
+
+
+		string JelenlegiKartya = "";
+		bool isNavbarDropped = false;
         public CarcassoneGame()
         {
             InitializeComponent();
@@ -40,37 +46,54 @@ namespace Carcassonne
             SetBackground();
 
             NavbarButtonsHidden();
-        }
+
+			
+		}
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var pushedButton = ((Button)(FrameworkElement)sender);
 
-            List<Button> buttons = new List<Button>();
-            buttons.Append(pushedButton);
 
-            pushedButton.Background = rctFelforditottKartya.Fill;
+			pushedButton.Background = rctFelforditottKartya.Fill;
 
-            Random rnd = new Random();
-            string folder = @"Kepek";
-            string[] files = Directory.GetFiles(folder);
+			string[] tomb = JelenlegiKartya.Split('_');
+
+			kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya);
+			lista.Add(generaltKartya);
+
+			string[] tombKetto = ((Button)(FrameworkElement)sender).Name.Split("k");
+			int index = Convert.ToInt32(tombKetto[1]);
+			KartyaTomb[index] = generaltKartya.Nev;
+
+			Random rnd = new Random();
+			string folder = @"Kepek";
+			string[] files = Directory.GetFiles(folder);
 
 
-            string generaltNev = files[rnd.Next(files.Length)];
+			string generaltNev = files[rnd.Next(files.Length)];
+
+			string[] segedTombElso = generaltNev.Split('\\');
+			string[] segedTombMasodik = segedTombElso[1].Split('.');
 
 
-            BitmapImage bitimg = new BitmapImage();
+
+			BitmapImage bitimg = new BitmapImage();
             bitimg.BeginInit();
             bitimg.UriSource = new Uri(@$"{generaltNev}", UriKind.RelativeOrAbsolute);
             bitimg.EndInit();
 
 
-            CardPlacementSound();
+			
+			CardPlacementSound();
             rctFelforditottKartya.Fill = new ImageBrush(bitimg);
             pushedButton.RemoveHandler(ButtonBase.ClickEvent, new RoutedEventHandler(Button_Click));
             pushedButton.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OccupiedTileErrorMessage));
 
-        }
+
+			JelenlegiKartya = segedTombMasodik[0];
+
+		}
 
         private void btnMainMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -110,8 +133,12 @@ namespace Carcassonne
 
 
             rctFelforditottKartya.Fill = new ImageBrush(bitimg);
+			string[] tombElso = generaltNev.Split('\\');
+			string[] tombMasodik = tombElso[1].Split('.');
+			JelenlegiKartya = tombMasodik[0];
 
-            ((Button)(FrameworkElement)sender).Visibility = Visibility.Hidden;
+			((Button)(FrameworkElement)sender).Visibility = Visibility.Hidden;
+
 
         }
 
@@ -145,8 +172,9 @@ namespace Carcassonne
         }
 
         private void CardPlacementSound()
-        {             
-            SoundPlayer soundPlayer = new SoundPlayer("Card-Flip-Sound.wav");
+        {
+
+			SoundPlayer soundPlayer = new SoundPlayer("Card-Flip-Sound.wav");
             soundPlayer.Load();
             soundPlayer.Play();   
         }
@@ -189,13 +217,19 @@ namespace Carcassonne
                 ugTabla.Children.Add(gomb1);
 
             }
-        }
+
+			for (int i = 0; i < KartyaTomb.Length; i++)
+			{
+				KartyaTomb[i] = '0'.ToString();
+			}
+		}
 
         private void NavbarButtonsHidden()
         {
             btnSave.Visibility = Visibility.Hidden;
             btnSettings.Visibility = Visibility.Hidden;
             btnExit.Visibility = Visibility.Hidden;
+            btnBetolt.Visibility = Visibility.Hidden;
         }
 
         private void NavbarButtonsVisible()
@@ -203,8 +237,75 @@ namespace Carcassonne
             btnSave.Visibility = Visibility.Visible;
             btnSettings.Visibility = Visibility.Visible;
             btnExit.Visibility = Visibility.Visible;
+            btnBetolt.Visibility = Visibility.Visible;
         }
 
-    }
+		private void btnJobbraFordit_Click(object sender, RoutedEventArgs e)
+		{
+			string[] tomb = JelenlegiKartya.Split("_");
+			kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya);
+			string uj_nev = kartya.Fordit(generaltKartya, true);
 
+
+			BitmapImage bitimg = new BitmapImage();
+			bitimg.BeginInit();
+			bitimg.UriSource = new Uri(@$"Kepek\{uj_nev}.png", UriKind.RelativeOrAbsolute);
+			bitimg.EndInit();
+
+
+			rctFelforditottKartya.Fill = new ImageBrush(bitimg);
+
+			JelenlegiKartya = uj_nev;
+		}
+
+		private void btnBalraFordit_Click(object sender, RoutedEventArgs e)
+		{
+			string[] tomb = JelenlegiKartya.Split("_");
+			kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya);
+			string uj_nev = kartya.Fordit(generaltKartya, false);
+
+
+			BitmapImage bitimg = new BitmapImage();
+			bitimg.BeginInit();
+			bitimg.UriSource = new Uri(@$"Kepek\{uj_nev}.png", UriKind.RelativeOrAbsolute);
+			bitimg.EndInit();
+
+
+			rctFelforditottKartya.Fill = new ImageBrush(bitimg);
+
+			JelenlegiKartya = uj_nev;
+		}
+
+		private void btnSave_Click(object sender, RoutedEventArgs e)
+		{
+			File.WriteAllLines("new.txt", KartyaTomb);
+			using StreamReader sr = new StreamReader("new.txt");
+			string res = sr.ReadToEnd();
+		}
+
+		private void btnBetolt_Click(object sender, RoutedEventArgs e)
+		{
+            lista.Clear();
+			string[] lines = File.ReadAllLines("new.txt");
+			for (int i = 0; i < lines.Length; i++)
+			{
+				if (lines[i] != '0'.ToString())
+				{
+
+					BitmapImage bitimg = new BitmapImage();
+					bitimg.BeginInit();
+					bitimg.UriSource = new Uri(@$"Kepek\{lines[i]}.png", UriKind.RelativeOrAbsolute);
+					bitimg.EndInit();
+                    KartyaTomb[i] = lines[i];   
+					((Button)ugTabla.Children[i]).Background = new ImageBrush(bitimg);
+
+                    string[] tomb = lines[i].Split("_");
+
+                    kartya beolvasottKartya =new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), lines[i]);
+                    lista.Add(beolvasottKartya);
+                    
+				}
+			}
+		}
+	}
 }

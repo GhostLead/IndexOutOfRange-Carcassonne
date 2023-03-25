@@ -8,37 +8,68 @@ namespace Carcassonne
 {
     class kartya
     {
-        string name = "";
+		string nev;
+		char miFel;
+		char miLe;
+		char miJobb;
+		char miBal;
+		char miKozep;
 
-        bool hasRoute = false;
+		public kartya(char miFel, char miLe, char miJobb, char miBal, char miKozep, string nev)
+		{
+			this.MiFel = miFel;
+			this.MiLe = miLe;
+			this.MiJobb = miJobb;
+			this.MiBal = miBal;
+			this.MiKozep = miKozep;
+			this.nev = nev;
+		}
 
-        bool hasRouteUp = false;
-        bool hasRouteDown = false;
-        bool hasRouteLeft = false;
-        bool hasRouteRight = false;
-        
+		public char MiFel { get => miFel; set => miFel = value; }
+		public char MiLe { get => miLe; set => miLe = value; }
+		public char MiJobb { get => miJobb; set => miJobb = value; }
+		public char MiBal { get => miBal; set => miBal = value; }
+		public char MiKozep { get => miKozep; set => miKozep = value; }
+		public string Nev { get => nev; set => nev = value; }
 
-        bool hasCastle = false;
+		public static string Fordit(kartya kartyNev, bool jobbVagyBall)
+		{
 
-        bool hasCastleUp = false;
-        bool hasCastleDown = false;
-        bool hasCastleLeft = false;
-        bool hasCastleRight = false;
+			if (jobbVagyBall == true)
+			{
+				string[] tombJobb = kartyNev.nev.Split('_');
+				char aJobb = Convert.ToChar(tombJobb[0]);
+				char bJobb = Convert.ToChar(tombJobb[1]);
+				char cJobb = Convert.ToChar(tombJobb[2]);
+				char dJobb = Convert.ToChar(tombJobb[3]);
 
-        bool isSelected = false;
+
+				kartyNev.miFel = dJobb;
+				kartyNev.miJobb = aJobb;
+				kartyNev.miLe = bJobb;
+				kartyNev.miBal = cJobb;
+				kartyNev.nev = kartyNev.miFel + "_" + kartyNev.miJobb + "_" + kartyNev.miLe + "_" + kartyNev.miBal + "_" + kartyNev.miKozep;
+
+				return kartyNev.nev;
+			}
+			else
+			{
+
+				string[] tombBall = kartyNev.nev.Split('_');
+				char aBall = Convert.ToChar(tombBall[0]);
+				char bBall = Convert.ToChar(tombBall[1]);
+				char cBall = Convert.ToChar(tombBall[2]);
+				char dBall = Convert.ToChar(tombBall[3]);
 
 
-        public string Name { get => name; set => name = value; }
-        public bool IsSelected { get => isSelected; set => isSelected = value; }
-        public bool HasRoute { get => hasRoute; set => hasRoute = value; }
-        public bool HasRouteUp { get => hasRouteUp; set => hasRouteUp = value; }
-        public bool HasRouteDown { get => hasRouteDown; set => hasRouteDown = value; }
-        public bool HasRouteLeft { get => hasRouteLeft; set => hasRouteLeft = value; }
-        public bool HasRouteRight { get => hasRouteRight; set => hasRouteRight = value; }
-        public bool HasCastle { get => hasCastle; set => hasCastle = value; }
-        public bool HasCastleUp { get => hasCastleUp; set => hasCastleUp = value; }
-        public bool HasCastleDown { get => hasCastleDown; set => hasCastleDown = value; }
-        public bool HasCastleLeft { get => hasCastleLeft; set => hasCastleLeft = value; }
-        public bool HasCastleRight { get => hasCastleRight; set => hasCastleRight = value; }
-    }
+				kartyNev.miFel = bBall;
+				kartyNev.miJobb = cBall;
+				kartyNev.miLe = dBall;
+				kartyNev.miBal = aBall;
+				kartyNev.nev = kartyNev.miFel + "_" + kartyNev.miJobb + "_" + kartyNev.miLe + "_" + kartyNev.miBal + "_" + kartyNev.miKozep;
+
+				return kartyNev.nev;
+			}
+		}
+	}
 }
