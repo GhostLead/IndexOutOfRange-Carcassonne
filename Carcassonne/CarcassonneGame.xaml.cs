@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,7 +34,10 @@ namespace Carcassonne
 		List<kartya> lista = new List<kartya>();
 
 		string[] KartyaTomb = new string[40];
-
+		List<int> fent = new List<int> {0,1,2,3,4};
+		List<int> jobb = new List<int> {4,9,14,19,24,29,34,39};
+		List<int> lent = new List<int> {35,36,37,38,39 };
+		List<int> bal = new List<int> {0,5,10,15,20,25,30,35};
 
 		string JelenlegiKartya = "";
 		bool isNavbarDropped = false;
@@ -313,8 +317,6 @@ namespace Carcassonne
 		{
 			var pushedButton = gomb;
 
-
-
 			string[] tomb = JelenlegiKartya.Split('_');
 
 			kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya);
@@ -334,35 +336,39 @@ namespace Carcassonne
 			bool JobbOldaliEllenorzes = false;
 			bool LentiEllenorzes = false;
 			bool BalOldaliEllenorzes = false;
+			/// <summary>
+			/// Ha nem szélen van
+			/// </summary>
+			if (!fent.Contains(index) && !jobb.Contains(index) && !lent.Contains(index) && !bal.Contains(index))
+			{
+				if (KartyaTomb[index - 5] != "0")
+				{
+					vanFent = true;
+				}
+				if (KartyaTomb[index + 1] != "0")
+				{
+					vanJobb = true;
+				}
+				if (KartyaTomb[index + 5] != "0")
+				{
+					vanLent = true;
+				}
 
-			if (KartyaTomb[index - 5] != "0")
-			{
-				vanFent = true;
-			}
-			if (KartyaTomb[index + 1] != "0")
-			{
-				vanJobb = true;
-			}
-			if (KartyaTomb[index + 5] != "0")
-			{
-				vanLent = true;
-			}
+				if (KartyaTomb[index - 1] != "0")
+				{
+					vanBal = true;
+				}
 
-			if (KartyaTomb[index - 1] != "0")
-			{
-				vanBal = true;
-			}
-
-			if (vanFent == false && vanJobb == false && vanLent == false && vanBal == false)
-			{
-				KartyaTomb[index] = "0";
-				lista.Remove(generaltKartya);
-				MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
-			}
-
-			else
-			{
-				if (vanFent)
+				if (vanFent == false && vanJobb == false && vanLent == false && vanBal == false)
+				{
+					KartyaTomb[index] = "0";
+					lista.Remove(generaltKartya);
+					MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
+				}
+				/// <summary>
+				/// Ha fent
+				/// </summary>
+				if (vanFent && !vanBal && !vanLent && !vanJobb)
 				{
 					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
 					{
@@ -370,8 +376,21 @@ namespace Carcassonne
 
 					}
 
+					if (FentiEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
 				}
-				if (vanJobb)
+				/// <summary>
+				/// Ha jobb
+				/// </summary>
+				else if (vanJobb && !vanFent && !vanLent && !vanBal)
 				{
 					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
 					{
@@ -379,38 +398,1636 @@ namespace Carcassonne
 
 					}
 
+					if (JobbOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
 				}
-				if (vanLent)
+				/// <summary>
+				/// Ha lent
+				/// </summary>
+				else if (vanLent && !vanFent && !vanJobb && !vanBal)
 				{
 					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
 					{
 						LentiEllenorzes = true;
 
 					}
+
+					if (LentiEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
 				}
-				if (vanBal)
+				/// <summary>
+				/// Ha bal
+				/// </summary>
+				else if (vanBal && !vanFent && !vanLent && !vanJobb)
 				{
 					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
 					{
 						BalOldaliEllenorzes = true;
 					}
+
+					if (BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha fent és jobb
+				/// </summary>
+				else if (vanFent && vanJobb && !vanLent && !vanBal)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && JobbOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha fent és lent
+				/// </summary>
+				else if (vanFent && vanLent && !vanJobb && !vanBal)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && LentiEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha bal és fent
+				/// </summary>
+				else if (vanBal && vanFent && !vanLent && !vanJobb)
+				{
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha jobb és bal
+				/// </summary>
+				else if (vanJobb && vanBal && !vanFent && !vanLent)
+				{
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (JobbOldaliEllenorzes && BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+
+				}
+				/// <summary>
+				/// Ha jobb és lent
+				/// </summary>
+				else if (vanJobb && vanLent && !vanFent && !vanBal)
+				{
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && JobbOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha lent és bal
+				/// </summary>
+				else if (vanLent && vanBal && !vanFent && !vanJobb)
+				{
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (LentiEllenorzes && BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha fent és lent és jobb
+				/// </summary>
+				else if (vanFent && vanJobb && vanLent && !vanBal)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && LentiEllenorzes && JobbOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha fent és jobb és bal
+				/// </summary>
+				else if (vanFent && vanJobb && vanBal && !vanLent)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (FentiEllenorzes && JobbOldaliEllenorzes && BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha fent és lent és bal
+				/// </summary>
+				else if (vanFent && vanLent && vanBal && !vanJobb)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (FentiEllenorzes && LentiEllenorzes && BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha jobb és lent és bal
+				/// </summary>
+				else if (vanJobb && vanLent && vanBal && !vanFent)
+				{
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (JobbOldaliEllenorzes && LentiEllenorzes && BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha fent és lent és bal és jobb
+				/// </summary>
+				else if (vanFent && vanLent && vanBal && vanJobb)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && LentiEllenorzes && BalOldaliEllenorzes && JobbOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+			}
+			/// <summary>
+			/// Ha a fenti szélen van
+			/// </summary>
+			else if (fent.Contains(index) && !jobb.Contains(index) && !lent.Contains(index) && !bal.Contains(index))
+			{
+				if (KartyaTomb[index + 1] != "0")
+				{
+					vanJobb = true;
+				}
+				if (KartyaTomb[index + 5] != "0")
+				{
+					vanLent = true;
+				}
+
+				if (KartyaTomb[index - 1] != "0")
+				{
+					vanBal = true;
+				}
+
+				if (vanJobb == false && vanLent == false && vanBal == false)
+				{
+					KartyaTomb[index] = "0";
+					lista.Remove(generaltKartya);
+					MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
+				}
+
+				/// <summary>
+				/// Ha jobb
+				/// </summary>
+				else if (vanJobb && !vanLent && !vanBal)
+				{
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (JobbOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha lent
+				/// </summary>
+				else if (vanLent && !vanJobb && !vanBal)
+				{
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (LentiEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha bal
+				/// </summary>
+				else if (vanBal && !vanLent && !vanJobb)
+				{
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha jobb és bal
+				/// </summary>
+				else if (vanJobb && vanBal && !vanLent)
+				{
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (JobbOldaliEllenorzes && BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+
+				}
+
+				/// <summary>
+				/// Ha jobb és lent
+				/// </summary>
+				else if (vanJobb && vanLent && !vanBal)
+				{
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && JobbOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha lent és bal
+				/// </summary>
+				else if (vanLent && vanBal && !vanJobb)
+				{
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (LentiEllenorzes && BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha jobb és lent és bal
+				/// </summary>
+				else if (vanJobb && vanLent && vanBal)
+				{
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (JobbOldaliEllenorzes && LentiEllenorzes && BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+			}
+			/// <summary>
+			/// Ha a jobb oldali szélen van
+			/// </summary>
+			else if (!fent.Contains(index) && jobb.Contains(index) && !lent.Contains(index) && !bal.Contains(index))
+			{
+				if (KartyaTomb[index - 5] != "0")
+				{
+					vanFent = true;
+				}
+
+				if (KartyaTomb[index + 5] != "0")
+				{
+					vanLent = true;
+				}
+
+				if (KartyaTomb[index - 1] != "0")
+				{
+					vanBal = true;
+				}
+
+				if (vanFent == false && vanLent == false && vanBal == false)
+				{
+					KartyaTomb[index] = "0";
+					lista.Remove(generaltKartya);
+					MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
+				}
+				/// <summary>
+				/// Ha fent
+				/// </summary>
+				if (vanFent && !vanBal && !vanLent)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha lent
+				/// </summary>
+				else if (vanLent && !vanFent && !vanBal)
+				{
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (LentiEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha bal
+				/// </summary>
+				else if (vanBal && !vanFent && !vanLent)
+				{
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha fent és lent
+				/// </summary>
+				else if (vanFent && vanLent && !vanBal)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && LentiEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha bal és fent
+				/// </summary>
+				else if (vanBal && vanFent && !vanLent)
+				{
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha lent és bal
+				/// </summary>
+				else if (vanLent && vanBal && !vanFent)
+				{
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (LentiEllenorzes && BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha fent és lent és bal
+				/// </summary>
+				else if (vanFent && vanLent && vanBal)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (FentiEllenorzes && LentiEllenorzes && BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+			}
+			/// <summary>
+			/// Ha a lenti szélen van
+			/// </summary>
+			else if (!fent.Contains(index) && !jobb.Contains(index) && lent.Contains(index) && !bal.Contains(index))
+			{
+				if (KartyaTomb[index - 5] != "0")
+				{
+					vanFent = true;
+				}
+				if (KartyaTomb[index + 1] != "0")
+				{
+					vanJobb = true;
+				}
+
+				if (KartyaTomb[index - 1] != "0")
+				{
+					vanBal = true;
+				}
+
+				if (vanFent == false && vanJobb == false && vanBal == false)
+				{
+					KartyaTomb[index] = "0";
+					lista.Remove(generaltKartya);
+					MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
+				}
+
+				/// <summary>
+				/// Ha fent
+				/// </summary>
+				if (vanFent && !vanBal && !vanJobb)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha jobb
+				/// </summary>
+				else if (vanJobb && !vanFent && !vanBal)
+				{
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (JobbOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha bal
+				/// </summary>
+				else if (vanBal && !vanFent && !vanJobb)
+				{
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha fent és jobb
+				/// </summary>
+				else if (vanFent && vanJobb && !vanBal)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && JobbOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha jobb és bal
+				/// </summary>
+				else if (vanJobb && vanBal && !vanFent)
+				{
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (JobbOldaliEllenorzes && BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+
+				}
+				/// <summary>
+				/// Ha bal és fent
+				/// </summary>
+				else if (vanBal && vanFent && !vanJobb)
+				{
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha fent és jobb és bal
+				/// </summary>
+				else if (vanFent && vanJobb && vanBal && !vanLent)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (FentiEllenorzes && JobbOldaliEllenorzes && BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+			}
+			/// <summary>
+			/// Ha a bal oldali szélen van
+			/// </summary>
+			else if (!fent.Contains(index) && !jobb.Contains(index) && !lent.Contains(index) && bal.Contains(index))
+			{
+				if (KartyaTomb[index - 5] != "0")
+				{
+					vanFent = true;
+				}
+				if (KartyaTomb[index + 1] != "0")
+				{
+					vanJobb = true;
+				}
+				if (KartyaTomb[index + 5] != "0")
+				{
+					vanLent = true;
+				}
+
+				if (vanFent == false && vanJobb == false && vanLent == false)
+				{
+					KartyaTomb[index] = "0";
+					lista.Remove(generaltKartya);
+					MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
+				}
+				/// <summary>
+				/// Ha fent
+				/// </summary>
+				if (vanFent && !vanLent && !vanJobb)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha jobb
+				/// </summary>
+				else if (vanJobb && !vanFent && !vanLent)
+				{
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (JobbOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha lent
+				/// </summary>
+				else if (vanLent && !vanFent && !vanJobb)
+				{
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (LentiEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha fent és jobb
+				/// </summary>
+				else if (vanFent && vanJobb && !vanLent)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && JobbOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha fent és lent
+				/// </summary>
+				else if (vanFent && vanLent && !vanJobb)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && LentiEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha jobb és lent
+				/// </summary>
+				else if (vanJobb && vanLent && !vanFent)
+				{
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && JobbOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha fent és lent és jobb
+				/// </summary>
+				else if (vanFent && vanJobb && vanLent)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && LentiEllenorzes && JobbOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+
+			}
+			/// <summary>
+			/// Ha a bal felső sarokban van
+			/// </summary>
+			else if (fent.Contains(index) && !jobb.Contains(index) && !lent.Contains(index) && bal.Contains(index))
+			{
+
+				if (KartyaTomb[index + 1] != "0")
+				{
+					vanJobb = true;
+				}
+				if (KartyaTomb[index + 5] != "0")
+				{
+					vanLent = true;
+				}
+
+
+				if (vanJobb == false && vanLent == false)
+				{
+					KartyaTomb[index] = "0";
+					lista.Remove(generaltKartya);
+					MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
+				}
+				/// <summary>
+				/// Ha jobb
+				/// </summary>
+				else if (vanJobb && !vanLent)
+				{
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (JobbOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha lent
+				/// </summary>
+				else if (vanLent && !vanJobb)
+				{
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (LentiEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha jobb és lent
+				/// </summary>
+				else if (vanJobb && vanLent)
+				{
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && JobbOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+			}
+			/// <summary>
+			/// Ha a jobb felső sarokban van
+			/// </summary>
+			else if (fent.Contains(index) && jobb.Contains(index) && !lent.Contains(index) && !bal.Contains(index))
+			{
+
+
+				if (KartyaTomb[index + 5] != "0")
+				{
+					vanLent = true;
+				}
+
+				if (KartyaTomb[index - 1] != "0")
+				{
+					vanBal = true;
+				}
+
+				if (vanLent == false && vanBal == false)
+				{
+					KartyaTomb[index] = "0";
+					lista.Remove(generaltKartya);
+					MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
+				}
+
+
+				/// <summary>
+				/// Ha lent
+				/// </summary>
+				else if (vanLent && !vanBal)
+				{
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (LentiEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha bal
+				/// </summary>
+				else if (vanBal && !vanLent)
+				{
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha lent és bal
+				/// </summary>
+				else if (vanLent && vanBal)
+				{
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					{
+						LentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (LentiEllenorzes && BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+			}
+			/// <summary>
+			/// Ha a jobb alsó sarokban van
+			/// </summary>
+			else if (!fent.Contains(index) && jobb.Contains(index) && lent.Contains(index) && !bal.Contains(index))
+			{
+				if (KartyaTomb[index - 5] != "0")
+				{
+					vanFent = true;
+				}
+
+				if (KartyaTomb[index - 1] != "0")
+				{
+					vanBal = true;
+				}
+
+				if (vanFent == false && vanBal == false)
+				{
+					KartyaTomb[index] = "0";
+					lista.Remove(generaltKartya);
+					MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
+				}
+				/// <summary>
+				/// Ha van fent
+				/// </summary>
+
+				if (vanFent && !vanBal)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha bal
+				/// </summary>
+				else if (vanBal && !vanFent)
+				{
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha bal és fent
+				/// </summary>
+				else if (vanBal && vanFent)
+				{
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					{
+						BalOldaliEllenorzes = true;
+					}
+
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && BalOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+			}
+			/// <summary>
+			/// Ha a bal alsó sarokban van
+			/// </summary>
+			else if (!fent.Contains(index) && !jobb.Contains(index) && lent.Contains(index) && bal.Contains(index))
+			{
+				if (KartyaTomb[index - 5] != "0")
+				{
+					vanFent = true;
+				}
+				if (KartyaTomb[index + 1] != "0")
+				{
+					vanJobb = true;
+				}
+
+
+				if (vanFent == false && vanJobb == false)
+				{
+					KartyaTomb[index] = "0";
+					lista.Remove(generaltKartya);
+					MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
+				}
+
+				/// <summary>
+				/// Ha fent
+				/// </summary>
+				if (vanFent &&  !vanJobb)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+				/// <summary>
+				/// Ha jobb
+				/// </summary>
+				else if (vanJobb && !vanFent)
+				{
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (JobbOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
+				}
+
+				/// <summary>
+				/// Ha fent és jobb
+				/// </summary>
+				else if (vanFent && vanJobb)
+				{
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					{
+						FentiEllenorzes = true;
+
+					}
+
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					{
+						JobbOldaliEllenorzes = true;
+
+					}
+
+					if (FentiEllenorzes && JobbOldaliEllenorzes)
+					{
+						LeRakas(pushedButton);
+					}
+					else
+					{
+						KartyaTomb[index] = "0";
+						lista.Remove(generaltKartya);
+						MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
+					}
 				}
 			}
 
-
-
-
-			if (FentiEllenorzes == false && JobbOldaliEllenorzes == false && LentiEllenorzes == false && BalOldaliEllenorzes == false)
-			{
-				KartyaTomb[index] = "0";
-				lista.Remove(generaltKartya);
-				MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nem tud csatlakozni a körülötte lévő kártyákhoz!");
-			}
-			else
-			{
-				LeRakas(pushedButton);
-
-			}
 
 		}
 
