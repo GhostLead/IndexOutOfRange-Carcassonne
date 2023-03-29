@@ -370,7 +370,14 @@ namespace Carcassonne
 				/// </summary>
 				if (vanFent && !vanBal && !vanLent && !vanJobb)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] || 
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') || 
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V')
+						)
 					{
 						FentiEllenorzes = true;
 
@@ -392,7 +399,13 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanJobb && !vanFent && !vanLent && !vanBal)
 				{
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
@@ -414,7 +427,13 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanLent && !vanFent && !vanJobb && !vanBal)
 				{
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0]||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V'))
 					{
 						LentiEllenorzes = true;
 
@@ -436,7 +455,13 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanBal && !vanFent && !vanLent && !vanJobb)
 				{
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -458,13 +483,25 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanFent && vanJobb && !vanLent && !vanBal)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
@@ -486,13 +523,25 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanFent && vanLent && !vanJobb && !vanBal)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V'))
 					{
 						LentiEllenorzes = true;
 
@@ -514,12 +563,24 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanBal && vanFent && !vanLent && !vanJobb)
 				{
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
 
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
@@ -541,13 +602,25 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanJobb && vanBal && !vanFent && !vanLent)
 				{
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -569,13 +642,25 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanJobb && vanLent && !vanFent && !vanBal)
 				{
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
@@ -597,13 +682,25 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanLent && vanBal && !vanFent && !vanJobb)
 				{
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V'))
 					{
 						LentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -624,19 +721,37 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanFent && vanJobb && vanLent && !vanBal)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V'))
 					{
 						LentiEllenorzes = true;
 
@@ -658,19 +773,37 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanFent && vanJobb && vanBal && !vanLent)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -691,19 +824,37 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanFent && vanLent && vanBal && !vanJobb)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V'))
 					{
 						LentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -724,19 +875,37 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanJobb && vanLent && vanBal && !vanFent)
 				{
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V'))
 					{
 						LentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -757,24 +926,48 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanFent && vanLent && vanBal && vanJobb)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V'))
 					{
 						LentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
 
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
@@ -792,6 +985,7 @@ namespace Carcassonne
 					}
 				}
 			}
+
 			/// <summary>
 			/// Ha a fenti szélen van
 			/// </summary>
@@ -823,7 +1017,13 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanJobb && !vanLent && !vanBal)
 				{
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
@@ -845,7 +1045,13 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanLent && !vanJobb && !vanBal)
 				{
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V'))
 					{
 						LentiEllenorzes = true;
 
@@ -868,7 +1074,13 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanBal && !vanLent && !vanJobb)
 				{
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -890,13 +1102,25 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanJobb && vanBal && !vanLent)
 				{
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -915,17 +1139,29 @@ namespace Carcassonne
 				}
 
 				/// <summary>
-				/// Ha jobb és lent
+				/// Ha jobb és fent
 				/// </summary>
 				else if (vanJobb && vanLent && !vanBal)
 				{
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
@@ -947,13 +1183,25 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanLent && vanBal && !vanJobb)
 				{
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V'))
 					{
 						LentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -975,19 +1223,37 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanJobb && vanLent && vanBal)
 				{
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V'))
 					{
 						LentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -1005,6 +1271,7 @@ namespace Carcassonne
 				}
 
 			}
+
 			/// <summary>
 			/// Ha a jobb oldali szélen van
 			/// </summary>
@@ -1036,7 +1303,13 @@ namespace Carcassonne
 				/// </summary>
 				if (vanFent && !vanBal && !vanLent)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
@@ -1059,7 +1332,13 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanLent && !vanFent && !vanBal)
 				{
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V'))
 					{
 						LentiEllenorzes = true;
 
@@ -1081,7 +1360,13 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanBal && !vanFent && !vanLent)
 				{
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -1103,13 +1388,26 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanFent && vanLent && !vanBal)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V')
+)
 					{
 						LentiEllenorzes = true;
 
@@ -1131,12 +1429,24 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanBal && vanFent && !vanLent)
 				{
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
 
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
@@ -1159,13 +1469,26 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanLent && vanBal && !vanFent)
 				{
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V'))
 					{
 						LentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V')
+)
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -1187,19 +1510,38 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanFent && vanLent && vanBal)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V')
+)
 					{
 						LentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -1217,6 +1559,7 @@ namespace Carcassonne
 				}
 
 			}
+
 			/// <summary>
 			/// Ha a lenti szélen van
 			/// </summary>
@@ -1248,7 +1591,13 @@ namespace Carcassonne
 				/// </summary>
 				if (vanFent && !vanBal && !vanJobb)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
@@ -1270,7 +1619,13 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanJobb && !vanFent && !vanBal)
 				{
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
@@ -1293,7 +1648,14 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanBal && !vanFent && !vanJobb)
 				{
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V')
+)
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -1315,13 +1677,25 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanFent && vanJobb && !vanBal)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
@@ -1344,13 +1718,25 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanJobb && vanBal && !vanFent)
 				{
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -1372,12 +1758,24 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanBal && vanFent && !vanJobb)
 				{
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
 
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
@@ -1399,19 +1797,38 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanFent && vanJobb && vanBal && !vanLent)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V')
+)
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -1428,6 +1845,7 @@ namespace Carcassonne
 					}
 				}
 			}
+
 			/// <summary>
 			/// Ha a bal oldali szélen van
 			/// </summary>
@@ -1457,7 +1875,13 @@ namespace Carcassonne
 				/// </summary>
 				if (vanFent && !vanLent && !vanJobb)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
@@ -1479,7 +1903,13 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanJobb && !vanFent && !vanLent)
 				{
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
@@ -1501,7 +1931,13 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanLent && !vanFent && !vanJobb)
 				{
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V'))
 					{
 						LentiEllenorzes = true;
 
@@ -1524,13 +1960,25 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanFent && vanJobb && !vanLent)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
@@ -1552,13 +2000,25 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanFent && vanLent && !vanJobb)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V'))
 					{
 						LentiEllenorzes = true;
 
@@ -1581,13 +2041,26 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanJobb && vanLent && !vanFent)
 				{
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4]
+ ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
@@ -1610,19 +2083,38 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanFent && vanJobb && vanLent)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4]||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V')
+)
 					{
 						LentiEllenorzes = true;
 
@@ -1642,6 +2134,7 @@ namespace Carcassonne
 
 
 			}
+
 			/// <summary>
 			/// Ha a bal felső sarokban van
 			/// </summary>
@@ -1669,7 +2162,13 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanJobb && !vanLent)
 				{
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
@@ -1691,7 +2190,14 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanLent && !vanJobb)
 				{
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V')
+)
 					{
 						LentiEllenorzes = true;
 
@@ -1714,19 +2220,31 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanJobb && vanLent)
 				{
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][4] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V'))
 					{
-						FentiEllenorzes = true;
+						LentiEllenorzes = true;
 
 					}
 
-					if (FentiEllenorzes && JobbOldaliEllenorzes)
+					if (LentiEllenorzes && JobbOldaliEllenorzes)
 					{
 						LeRakas(pushedButton);
 					}
@@ -1738,6 +2256,7 @@ namespace Carcassonne
 					}
 				}
 			}
+
 			/// <summary>
 			/// Ha a jobb felső sarokban van
 			/// </summary>
@@ -1768,7 +2287,13 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanLent && !vanBal)
 				{
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V'))
 					{
 						LentiEllenorzes = true;
 
@@ -1790,7 +2315,13 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanBal && !vanLent)
 				{
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -1812,13 +2343,26 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanLent && vanBal)
 				{
-					if (generaltKartya.MiLe == KartyaTomb[index + 5][0])
+					if (generaltKartya.MiLe == KartyaTomb[index + 5][0] ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'V') ||
+						(generaltKartya.MiLe == 'F' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'O') ||
+						(generaltKartya.MiLe == 'V' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'F') ||
+						(generaltKartya.MiLe == 'O' && KartyaTomb[index + 5][0] == 'V')
+)
 					{
 						LentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -1835,6 +2379,7 @@ namespace Carcassonne
 					}
 				}
 			}
+
 			/// <summary>
 			/// Ha a jobb alsó sarokban van
 			/// </summary>
@@ -1862,7 +2407,13 @@ namespace Carcassonne
 
 				if (vanFent && !vanBal)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
@@ -1885,7 +2436,13 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanBal && !vanFent)
 				{
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
@@ -1907,12 +2464,24 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanBal && vanFent)
 				{
-					if (generaltKartya.MiBal == KartyaTomb[index - 1][2])
+					if (generaltKartya.MiBal == KartyaTomb[index - 1][2] ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'V') ||
+						(generaltKartya.MiBal == 'F' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'O') ||
+						(generaltKartya.MiBal == 'V' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'F') ||
+						(generaltKartya.MiBal == 'O' && KartyaTomb[index - 1][2] == 'V'))
 					{
 						BalOldaliEllenorzes = true;
 					}
 
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
@@ -1931,6 +2500,7 @@ namespace Carcassonne
 				}
 
 			}
+
 			/// <summary>
 			/// Ha a bal alsó sarokban van
 			/// </summary>
@@ -1958,7 +2528,13 @@ namespace Carcassonne
 				/// </summary>
 				if (vanFent &&  !vanJobb)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
@@ -1980,7 +2556,13 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanJobb && !vanFent)
 				{
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
@@ -2003,13 +2585,25 @@ namespace Carcassonne
 				/// </summary>
 				else if (vanFent && vanJobb)
 				{
-					if (generaltKartya.MiFel == KartyaTomb[index - 5][4])
+					if (generaltKartya.MiFel == KartyaTomb[index - 5][4] ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'V') ||
+						(generaltKartya.MiFel == 'F' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'O') ||
+						(generaltKartya.MiFel == 'V' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'F') ||
+						(generaltKartya.MiFel == 'O' && KartyaTomb[index - 5][4] == 'V'))
 					{
 						FentiEllenorzes = true;
 
 					}
 
-					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6])
+					if (generaltKartya.MiJobb == KartyaTomb[index + 1][6] ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'V') ||
+						(generaltKartya.MiJobb == 'F' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'O') ||
+						(generaltKartya.MiJobb == 'V' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'F') ||
+						(generaltKartya.MiJobb == 'O' && KartyaTomb[index + 1][6] == 'V'))
 					{
 						JobbOldaliEllenorzes = true;
 
@@ -2027,6 +2621,7 @@ namespace Carcassonne
 					}
 				}
 			}
+
 
 
 		}
