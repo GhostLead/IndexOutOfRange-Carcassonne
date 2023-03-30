@@ -344,6 +344,7 @@ namespace Carcassonne
 
 			JelenlegiKartya = segedTombMasodik[0];
 		}
+
 		public void Ellenoriz(Button gomb)
 		{
 
@@ -364,35 +365,66 @@ namespace Carcassonne
 			bool vanJobb = false;
 			bool vanLent = false;
 			bool vanBal = false;
+			
+			bool fentEllenorzes = true;
+			bool jobbOldaliEllenorzes = true;
+			bool lenitEllenorzes = true;
+			bool balOldaliEllenorzes = true;
 
 
-
-			if (KartyaTomb[sorindex - 1, oszlopindex] != "0")
+			if (sorindex - 1 > 0)
 			{
-				vanFent = true;
-				LeRakas(gomb);
+				if (KartyaTomb[sorindex - 1, oszlopindex] != "0")
+				{
+					vanFent = true;
+					if (vanFent && KartyaTomb[sorindex, oszlopindex][0] != KartyaTomb[sorindex - 1, oszlopindex][4])
+					{
+						fentEllenorzes = false;
+					}
+
+				}
+				
 			}
-			if (KartyaTomb[sorindex, oszlopindex + 1] != "0")
+			if (oszlopindex + 1 < KartyaTomb.GetLength(1))
 			{
-				vanJobb = true;
-				LeRakas(gomb);
+				if (KartyaTomb[sorindex, oszlopindex + 1] != "0")
+				{
+
+					vanJobb = true;
+					if (vanJobb && KartyaTomb[sorindex, oszlopindex][2] != KartyaTomb[sorindex, oszlopindex + 1][6])
+					{
+						jobbOldaliEllenorzes = false;
+					}
+				}
 
 			}
-			if (KartyaTomb[sorindex + 1, oszlopindex] != "0")
+			if (sorindex+1 < KartyaTomb.GetLength(0))
 			{
-				vanLent = true;
-				LeRakas(gomb);
+				if (KartyaTomb[sorindex + 1, oszlopindex] != "0")
+				{
+					vanLent = true;
+					if ( vanLent && KartyaTomb[sorindex, oszlopindex][4] != KartyaTomb[sorindex + 1, oszlopindex][0])
+					{
+						lenitEllenorzes = false;
+					}
+
+				}
 
 			}
 
-			if (KartyaTomb[sorindex, oszlopindex - 1] != "0")
+			if (oszlopindex -1 > 0)
 			{
-				vanBal = true;
-				LeRakas(gomb);
+				if (KartyaTomb[sorindex, oszlopindex - 1] != "0")
+				{
+					vanBal = true;
+					if (vanBal && KartyaTomb[sorindex, oszlopindex][6] != KartyaTomb[sorindex, oszlopindex - 1][2])
+					{
+						balOldaliEllenorzes = false;
+					}
+
+				}
 
 			}
-
-
 
 			if (vanFent == false && vanJobb == false && vanLent == false && vanBal == false)
 			{
@@ -400,6 +432,18 @@ namespace Carcassonne
 				lista.Remove(generaltKartya);
 				MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
 			}
+
+			if (fentEllenorzes == false || jobbOldaliEllenorzes == false || lenitEllenorzes == false || balOldaliEllenorzes == false)
+			{
+				KartyaTomb[sorindex, oszlopindex] = "0";
+				lista.Remove(generaltKartya);
+				MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
+			}
+			else
+			{
+				LeRakas(gomb);
+			}
+
 
 		}
 
