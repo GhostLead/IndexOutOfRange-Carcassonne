@@ -284,8 +284,7 @@ namespace Carcassonne
 			tw.Close();
 
 		}
-
-
+		
 		private void btnBetolt_Click(object sender, RoutedEventArgs e)
 		{
 
@@ -376,7 +375,7 @@ namespace Carcassonne
 			bool balOldaliEllenorzes = true;
 
 
-			if (sorindex - 1 > 0)
+			if (sorindex - 1 >= 0)
 			{
 				if (KartyaTomb[sorindex - 1, oszlopindex] != "0")
 				{
@@ -416,7 +415,7 @@ namespace Carcassonne
 
 			}
 
-			if (oszlopindex -1 > 0)
+			if (oszlopindex -1 >= 0)
 			{
 				if (KartyaTomb[sorindex, oszlopindex - 1] != "0")
 				{
