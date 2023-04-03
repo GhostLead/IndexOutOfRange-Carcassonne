@@ -225,38 +225,60 @@ namespace Carcassonne
 
 		private void btnJobbraFordit_Click(object sender, RoutedEventArgs e)
 		{
-			string[] tomb = JelenlegiKartya.Split("_");
-			kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya);
-			string uj_nev = kartya.Fordit(generaltKartya, true);
+			if (btnStartGame.Visibility == Visibility.Visible)
+			{
+				MessageBox.Show("A játék még nincsen elindítva!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+
+			}
+
+			else
+			{
+
+				string[] tomb = JelenlegiKartya.Split("_");
+				kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya);
+				string uj_nev = kartya.Fordit(generaltKartya, true);
 
 
-			BitmapImage bitimg = new BitmapImage();
-			bitimg.BeginInit();
-			bitimg.UriSource = new Uri(@$"Kepek\{uj_nev}.png", UriKind.RelativeOrAbsolute);
-			bitimg.EndInit();
+				BitmapImage bitimg = new BitmapImage();
+				bitimg.BeginInit();
+				bitimg.UriSource = new Uri(@$"Kepek\{uj_nev}.png", UriKind.RelativeOrAbsolute);
+				bitimg.EndInit();
 
 
-			rctFelforditottKartya.Fill = new ImageBrush(bitimg);
+				rctFelforditottKartya.Fill = new ImageBrush(bitimg);
 
-			JelenlegiKartya = uj_nev;
+				JelenlegiKartya = uj_nev;
+			}
+
 		}
 
 		private void btnBalraFordit_Click(object sender, RoutedEventArgs e)
 		{
-			string[] tomb = JelenlegiKartya.Split("_");
-			kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya);
-			string uj_nev = kartya.Fordit(generaltKartya, false);
+
+			if (btnStartGame.Visibility == Visibility.Visible)
+			{
+				MessageBox.Show("A játék még nincsen elindítva!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+
+			}
+
+			else
+			{
+				string[] tomb = JelenlegiKartya.Split("_");
+				kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya);
+				string uj_nev = kartya.Fordit(generaltKartya, false);
 
 
-			BitmapImage bitimg = new BitmapImage();
-			bitimg.BeginInit();
-			bitimg.UriSource = new Uri(@$"Kepek\{uj_nev}.png", UriKind.RelativeOrAbsolute);
-			bitimg.EndInit();
+				BitmapImage bitimg = new BitmapImage();
+				bitimg.BeginInit();
+				bitimg.UriSource = new Uri(@$"Kepek\{uj_nev}.png", UriKind.RelativeOrAbsolute);
+				bitimg.EndInit();
 
 
-			rctFelforditottKartya.Fill = new ImageBrush(bitimg);
+				rctFelforditottKartya.Fill = new ImageBrush(bitimg);
 
-			JelenlegiKartya = uj_nev;
+				JelenlegiKartya = uj_nev;
+
+			}
 		}
 
 		private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -287,30 +309,41 @@ namespace Carcassonne
 		
 		private void btnBetolt_Click(object sender, RoutedEventArgs e)
 		{
-
-			lista.Clear();
-			string[] lines = File.ReadAllLines("new.txt");
-			for (int i = 0; i < lines.Length; i++)
+			if (btnStartGame.Visibility == Visibility.Visible)
 			{
-				if (lines[i] != "0".ToString())
+				MessageBox.Show("A játék még nincsen elindítva!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+
+			}
+
+			else
+			{
+
+				lista.Clear();
+				string[] lines = File.ReadAllLines("new.txt");
+				for (int i = 0; i < lines.Length; i++)
 				{
+					if (lines[i] != "0".ToString())
+					{
 
-					BitmapImage bitimg = new BitmapImage();
-					bitimg.BeginInit();
-					bitimg.UriSource = new Uri(@$"Kepek\{lines[i]}.png", UriKind.RelativeOrAbsolute);
-					bitimg.EndInit();
-					int oszlopindex = i % oszlopSzam;
-					int sorindex = i / oszlopSzam;
-					KartyaTomb[sorindex, oszlopindex] = lines[i];
-					((Button)ugTabla.Children[i]).Background = new ImageBrush(bitimg);
+						BitmapImage bitimg = new BitmapImage();
+						bitimg.BeginInit();
+						bitimg.UriSource = new Uri(@$"Kepek\{lines[i]}.png", UriKind.RelativeOrAbsolute);
+						bitimg.EndInit();
+						int oszlopindex = i % oszlopSzam;
+						int sorindex = i / oszlopSzam;
+						KartyaTomb[sorindex, oszlopindex] = lines[i];
+						((Button)ugTabla.Children[i]).Background = new ImageBrush(bitimg);
+						((Button)ugTabla.Children[i]).RemoveHandler(ButtonBase.ClickEvent, new RoutedEventHandler(Button_Click));
+						((Button)ugTabla.Children[i]).AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OccupiedTileErrorMessage));
+						string[] tomb = lines[i].Split("_");
 
-					string[] tomb = lines[i].Split("_");
+						kartya beolvasottKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), lines[i]);
+						lista.Add(beolvasottKartya);
 
-					kartya beolvasottKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), lines[i]);
-					lista.Add(beolvasottKartya);
-
+					}
 				}
 			}
+
 
 
 
