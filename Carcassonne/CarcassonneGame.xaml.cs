@@ -295,15 +295,25 @@ namespace Carcassonne
 			}
 			File.WriteAllLines("nem.txt", sorok);
 			*/
-			TextWriter tw = new StreamWriter("new.txt");
-			for (int i = 0; i < KartyaTomb.GetLength(0); i++)
+			if (btnStartGame.Visibility == Visibility.Visible)
 			{
-				for (int j = 0; j < KartyaTomb.GetLength(1); j++)
-				{
-					tw.WriteLine(KartyaTomb[i, j]);
-				}
+				MessageBox.Show("A játék még nincsen elindítva!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+
 			}
-			tw.Close();
+
+			else
+			{
+				TextWriter tw = new StreamWriter("new.txt");
+				for (int i = 0; i < KartyaTomb.GetLength(0); i++)
+				{
+					for (int j = 0; j < KartyaTomb.GetLength(1); j++)
+					{
+						tw.WriteLine(KartyaTomb[i, j]);
+					}
+				}
+				tw.Close();
+
+			}
 
 		}
 		
