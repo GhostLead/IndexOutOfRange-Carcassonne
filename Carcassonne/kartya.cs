@@ -14,23 +14,32 @@ namespace Carcassonne
 		char miJobb;
 		char miBal;
 		char miKozep;
-
+		bool uresKartya;
+		const int SOROK_SZAMA = 8;
+		const int OSZLOPOK_SZAMA = 5;
 		public kartya(char miFel, char miJobb, char miLe, char miBal, char miKozep, string nev)
 		{
-			this.MiFel = miFel;
-			this.MiJobb = miJobb;
-			this.MiLe = miLe;
-			this.MiBal = miBal;
-			this.MiKozep = miKozep;
+			this.miFel = miFel;
+			this.miJobb = miJobb;
+			this.miLe = miLe;
+			this.miBal = miBal;
+			this.miKozep = miKozep;
 			this.nev = nev;
 		}
 
-		public char MiFel { get => miFel; set => miFel = value; }
-		public char MiLe { get => miLe; set => miLe = value; }
-		public char MiJobb { get => miJobb; set => miJobb = value; }
-		public char MiBal { get => miBal; set => miBal = value; }
-		public char MiKozep { get => miKozep; set => miKozep = value; }
-		public string Nev { get => nev; set => nev = value; }
+		public kartya()
+		{
+			this.uresKartya = true;
+		}
+
+		public char MiFel { get => miFel;}
+		public char MiLe { get => miLe;}
+		public char MiJobb { get => miJobb;}
+		public char MiBal { get => miBal;}
+		public char MiKozep { get => miKozep;}
+		public string Nev { get => nev;}
+		public bool UresKartya { get => uresKartya;}
+
 
 		public static string Fordit(kartya kartyNev, bool jobbVagyBal)
 		{
@@ -71,5 +80,8 @@ namespace Carcassonne
 				return kartyNev.nev;
 			}
 		}
+		
+		
+		
 	}
 }

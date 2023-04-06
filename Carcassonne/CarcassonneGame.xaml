@@ -18,8 +18,9 @@
         <Rectangle x:Name="rctFelforditottKartyaFent" Stroke="Black" HorizontalAlignment="Right" VerticalAlignment="Top" Margin=" 0 63 407 0 "  Width="220" Height="220" StrokeThickness="4"/>
         <Rectangle x:Name="rctFelforditottKartyaKozep" Stroke="Black" HorizontalAlignment="Right" VerticalAlignment="Top" Margin=" 0 48 399 0 "  Width="220" Height="220" StrokeThickness="4"/>
 
+        <Label x:Name="lblTeszt" Content="0" Width="100" Height="50" FontSize="30" Margin="939,468,241,234"></Label>
 
-        
+
         <!--StartGameButton-->
         <Button x:Name="btnStartGame" Content="Kezdés" FontSize="40" FontWeight="DemiBold" Margin=" 145 0 0 0 " HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" Height="80" Click="btnStartGame_Click"/>
 
@@ -34,7 +35,8 @@
         <Button x:Name="btnSave" Visibility="Hidden"  Content="Mentés" FontSize="17" FontWeight="Bold" Width="100" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Margin=" 0 110 20 0 " BorderBrush="Black" BorderThickness="2" Click="btnSave_Click"/>
         <Button x:Name="btnSettings" Visibility="Hidden" Content="Beállítások" FontSize="17" FontWeight="Bold" Width="100" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Margin=" 0 170 20 0 " BorderBrush="Black" BorderThickness="2" Click="btnSettings_Click"/>
         <Button x:Name="btnExit" Visibility="Hidden" Content="Kilépés" FontSize="17" FontWeight="Bold" Width="100" Height="50"  HorizontalAlignment="Right" VerticalAlignment="Top" Margin=" 0 230 20 0 " BorderBrush="Black" BorderThickness="2" Click="btnExit_Click"/>
-        <Button x:Name="btnBetolt" Visibility="Hidden" Content="Betöltés" FontSize="17" FontWeight="Bold" Width="100" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 290 20 0" BorderBrush="Black" BorderThickness="2" Click="btnBetolt_Click"/>
+        <Button x:Name="btnBetolt" Visibility="Hidden"  Content="Betöltés" FontSize="17" FontWeight="Bold" Width="100" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 290 20 0" BorderBrush="Black" BorderThickness="2" Click="btnBetolt_Click"/>
+        <Button x:Name="btnBefejez" Visibility="Hidden" Content="Befejezés" FontSize="17" FontWeight="Bold" Width="100" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 350 20 0" BorderBrush="Black" BorderThickness="2" Click="btnBefejez_Click"/>
         <Button x:Name="btnJobbraFordit" Content="→" FontSize="20"  Width="30" Height="30" Click="btnJobbraFordit_Click" Margin="795,580,415,102"/>
         <Button x:Name="btnBalraFordit" Content="←" FontSize="20" Width="30" Height="30" Margin="640,580,570,102" Click="btnBalraFordit_Click"/>
 

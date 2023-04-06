@@ -43,6 +43,7 @@ namespace Carcassonne
 		const byte KELET = 2;
 		const byte DEL = 4;
 		const byte NYUGAT = 6;
+		kartya[,] osztalyTomb = new kartya[8,5];
 		public CarcassoneGame()
 		{
 			InitializeComponent();
@@ -213,6 +214,7 @@ namespace Carcassonne
 			btnSettings.Visibility = Visibility.Hidden;
 			btnExit.Visibility = Visibility.Hidden;
 			btnBetolt.Visibility = Visibility.Hidden;
+			btnBefejez.Visibility = Visibility.Hidden;
 		}
 
 		private void NavbarButtonsVisible()
@@ -221,6 +223,7 @@ namespace Carcassonne
 			btnSettings.Visibility = Visibility.Visible;
 			btnExit.Visibility = Visibility.Visible;
 			btnBetolt.Visibility = Visibility.Visible;
+			btnBefejez.Visibility = Visibility.Visible;
 		}
 
 		private void btnJobbraFordit_Click(object sender, RoutedEventArgs e)
@@ -327,8 +330,16 @@ namespace Carcassonne
 
 			else
 			{
+				for (int i = 0; i < osztalyTomb.GetLength(0); i++)
+				{
+					for (int j = 0; j < osztalyTomb.GetLength(1); j++)
+					{
+						osztalyTomb[i, j] = new kartya();
+					}
+				}
 
 				lista.Clear();
+				
 				string[] lines = File.ReadAllLines("new.txt");
 				for (int i = 0; i < lines.Length; i++)
 				{
@@ -349,14 +360,10 @@ namespace Carcassonne
 
 						kartya beolvasottKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), lines[i]);
 						lista.Add(beolvasottKartya);
-
+						osztalyTomb[sorindex,oszlopindex] = beolvasottKartya;
 					}
 				}
 			}
-
-
-
-
 
 		}
 
@@ -403,7 +410,7 @@ namespace Carcassonne
 			int index = Convert.ToInt32(tombKetto[1]);
 			int oszlopindex = index % oszlopSzam;
 			int sorindex = index / oszlopSzam;
-
+			osztalyTomb[sorindex, oszlopindex] = generaltKartya;
 			KartyaTomb[sorindex, oszlopindex] = generaltKartya.Nev;
 
 
@@ -477,6 +484,7 @@ namespace Carcassonne
 			{
 				KartyaTomb[sorindex, oszlopindex] = "0";
 				lista.Remove(generaltKartya);
+				osztalyTomb[sorindex, oszlopindex] = new kartya();
 				MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
 			}
 			else
@@ -486,6 +494,50 @@ namespace Carcassonne
 
 
 		}
+		
+		private void btnBefejez_Click(object sender, RoutedEventArgs e)
+		{
+			lblTeszt.Content = UtHossza(KartyaTomb, 3, 2);
+			CarcassoneGame ujAblak = new CarcassoneGame();
+			Application.Current.MainWindow = ujAblak;
+			ujAblak.Show();
+			this.Close();
+		}
 
+		private int UtHossza(string[,] jelenlegiTerkep, int sorIndex, int oszlopIndex)
+		{
+			int mértÚthossz = 0;
+			string[,] masolatTomb = new string[jelenlegiTerkep.GetLength(0), jelenlegiTerkep.GetLength(1)];
+			for (int i = 0; i < masolatTomb.GetLength(0); i++)
+			{
+				for (int j = 0; j < masolatTomb.GetLength(1); j++)
+				{
+					masolatTomb[i, j] = jelenlegiTerkep[i, j];
+				}
+			}
+			string masolat = masolatTomb[sorIndex, oszlopIndex];
+			masolatTomb[sorIndex, oszlopIndex] = "0";
+
+			if (sorIndex > 0 && masolat[ESZAK] == 'U' && masolatTomb[sorIndex - 1, oszlopIndex] != "0")
+			{
+				mértÚthossz += UtHossza(masolatTomb, sorIndex - 1, oszlopIndex);
+			}
+
+			if (sorIndex < sorSzam - 1 && masolat[DEL] == 'U' && masolatTomb[sorIndex + 1, oszlopIndex] != "0")
+			{
+				mértÚthossz += UtHossza(masolatTomb, sorIndex + 1, oszlopIndex);
+			}
+
+			if (oszlopIndex < oszlopSzam - 1 && masolat[KELET] == 'U' && masolatTomb[sorIndex, oszlopIndex + 1] != "0")
+			{
+				mértÚthossz += UtHossza(masolatTomb, sorIndex, oszlopIndex + 1);
+			}
+
+			if (oszlopIndex > 0 && masolat[NYUGAT] == 'U' && masolatTomb[sorIndex, oszlopIndex - 1] != "0")
+			{
+				mértÚthossz += UtHossza(masolatTomb, sorIndex, oszlopIndex - 1);
+			}
+			return mértÚthossz + 1;
+		}
 	}
 }
