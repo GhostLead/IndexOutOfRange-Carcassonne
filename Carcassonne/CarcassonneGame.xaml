@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="Carcassonne" Height="768" Width="1280">
     <Grid x:Name="grid" Background="Orange">
-        
+
         <!--Playground-->
         <UniformGrid Name="ugTabla" Background="Gray" Opacity="0.7" Margin=" 10 10 790 10 "/>
 
@@ -18,7 +18,7 @@
         <Rectangle x:Name="rctFelforditottKartyaFent" Stroke="Black" HorizontalAlignment="Right" VerticalAlignment="Top" Margin=" 0 63 407 0 "  Width="220" Height="220" StrokeThickness="4"/>
         <Rectangle x:Name="rctFelforditottKartyaKozep" Stroke="Black" HorizontalAlignment="Right" VerticalAlignment="Top" Margin=" 0 48 399 0 "  Width="220" Height="220" StrokeThickness="4"/>
 
-        <Label x:Name="lblTeszt" Content="0" Width="100" Height="50" FontSize="30" Margin="939,468,241,234"></Label>
+        <Label x:Name="lblTeszt" Content="0" Width="100" FontSize="30" Margin="944,393,236,284"/>
 
 
         <!--StartGameButton-->

@@ -497,45 +497,52 @@ namespace Carcassonne
 		
 		private void btnBefejez_Click(object sender, RoutedEventArgs e)
 		{
-			lblTeszt.Content = UtHossza(KartyaTomb, 3, 2);
+			lblTeszt.Content = UtHossza(MatrixMasolat(KartyaTomb), 3, 2);
+			/*
 			CarcassoneGame ujAblak = new CarcassoneGame();
 			Application.Current.MainWindow = ujAblak;
 			ujAblak.Show();
 			this.Close();
+			*/
 		}
 
-		private int UtHossza(string[,] jelenlegiTerkep, int sorIndex, int oszlopIndex)
+		private string[,] MatrixMasolat(string[,] matrix)
 		{
-			int mértÚthossz = 0;
-			string[,] masolatTomb = new string[jelenlegiTerkep.GetLength(0), jelenlegiTerkep.GetLength(1)];
+			string[,] masolatTomb = new string[matrix.GetLength(0), matrix.GetLength(1)];
 			for (int i = 0; i < masolatTomb.GetLength(0); i++)
 			{
 				for (int j = 0; j < masolatTomb.GetLength(1); j++)
 				{
-					masolatTomb[i, j] = jelenlegiTerkep[i, j];
+					masolatTomb[i, j] = matrix[i, j];
 				}
 			}
-			string masolat = masolatTomb[sorIndex, oszlopIndex];
-			masolatTomb[sorIndex, oszlopIndex] = "0";
+			return masolatTomb;
+		}
+		private int UtHossza(string[,] jelenlegiTerkep, int sorIndex, int oszlopIndex)
+		{
+			int mértÚthossz = 0;
+			
+			string masolat = jelenlegiTerkep[sorIndex, oszlopIndex];
+			jelenlegiTerkep[sorIndex, oszlopIndex] = "0";
 
-			if (sorIndex > 0 && masolat[ESZAK] == 'U' && masolatTomb[sorIndex - 1, oszlopIndex] != "0")
+			if (sorIndex > 0 && masolat[ESZAK] == 'U' && jelenlegiTerkep[sorIndex - 1, oszlopIndex] != "0")
 			{
-				mértÚthossz += UtHossza(masolatTomb, sorIndex - 1, oszlopIndex);
+				mértÚthossz += UtHossza(jelenlegiTerkep, sorIndex - 1, oszlopIndex);
 			}
 
-			if (sorIndex < sorSzam - 1 && masolat[DEL] == 'U' && masolatTomb[sorIndex + 1, oszlopIndex] != "0")
+			if (sorIndex < sorSzam - 1 && masolat[DEL] == 'U' && jelenlegiTerkep[sorIndex + 1, oszlopIndex] != "0")
 			{
-				mértÚthossz += UtHossza(masolatTomb, sorIndex + 1, oszlopIndex);
+				mértÚthossz += UtHossza(jelenlegiTerkep, sorIndex + 1, oszlopIndex);
 			}
 
-			if (oszlopIndex < oszlopSzam - 1 && masolat[KELET] == 'U' && masolatTomb[sorIndex, oszlopIndex + 1] != "0")
+			if (oszlopIndex < oszlopSzam - 1 && masolat[KELET] == 'U' && jelenlegiTerkep[sorIndex, oszlopIndex + 1] != "0")
 			{
-				mértÚthossz += UtHossza(masolatTomb, sorIndex, oszlopIndex + 1);
+				mértÚthossz += UtHossza(jelenlegiTerkep, sorIndex, oszlopIndex + 1);
 			}
 
-			if (oszlopIndex > 0 && masolat[NYUGAT] == 'U' && masolatTomb[sorIndex, oszlopIndex - 1] != "0")
+			if (oszlopIndex > 0 && masolat[NYUGAT] == 'U' && jelenlegiTerkep[sorIndex, oszlopIndex - 1] != "0")
 			{
-				mértÚthossz += UtHossza(masolatTomb, sorIndex, oszlopIndex - 1);
+				mértÚthossz += UtHossza(jelenlegiTerkep, sorIndex, oszlopIndex - 1);
 			}
 			return mértÚthossz + 1;
 		}
