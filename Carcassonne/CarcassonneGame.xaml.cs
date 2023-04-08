@@ -43,6 +43,7 @@ namespace Carcassonne
 		const byte KELET = 2;
 		const byte DEL = 4;
 		const byte NYUGAT = 6;
+		const byte KOZEP = 8;
 		kartya[,] osztalyTomb = new kartya[8,5];
 		public CarcassoneGame()
 		{
@@ -497,7 +498,49 @@ namespace Carcassonne
 		
 		private void btnBefejez_Click(object sender, RoutedEventArgs e)
 		{
-			lblTeszt.Content = UtHossza(MatrixMasolat(KartyaTomb), 3, 2);
+			int sorIndexUt = 0;
+			int oszlopIndexUt = 0;
+			int UtHossz = 0;
+			string[,] tesztTombUt = MatrixMasolat(KartyaTomb);
+			for (int sorIndexMasolat = 0; sorIndexMasolat < tesztTombUt.GetLength(0); sorIndexMasolat++)
+			{
+				for (int oszlopIndexMasolat = 0; oszlopIndexMasolat < tesztTombUt.GetLength(1); oszlopIndexMasolat++)
+				{
+					if (tesztTombUt[sorIndexMasolat, oszlopIndexMasolat].Contains('U'))
+					{
+
+						sorIndexUt = sorIndexMasolat;
+						oszlopIndexUt = oszlopIndexMasolat;
+						UtHossz += UtHossza(tesztTombUt, sorIndexUt, oszlopIndexUt);
+						tesztTombUt[sorIndexMasolat, oszlopIndexMasolat] = "0";
+						break;
+					}
+				}
+			}
+
+			int VarosHossz = 0;
+			int sorIndexVaros = 0;
+			int oszlopIndexVaros = 0;
+			string[,] tesztTombVaros = MatrixMasolat(KartyaTomb);
+			for (int i = 0; i < tesztTombVaros.GetLength(0); i++)
+			{
+				for (int j = 0; j < tesztTombVaros.GetLength(1); j++)
+				{
+					if (tesztTombVaros[i, j].Contains('V'))
+					{
+						sorIndexVaros = i;
+						oszlopIndexVaros = j;
+						VarosHossz += VarosHossza(tesztTombVaros, sorIndexVaros,oszlopIndexVaros);
+						tesztTombVaros[i,j] = "0";
+						break;
+					
+					}
+				}
+			}
+			int beteltPalyaBonusz = BetelPalya(MatrixMasolat(KartyaTomb));
+			lblTeszt.Content = $"{UtHossz} + {VarosHossz} + {KolostorPontozas(MatrixMasolat(KartyaTomb))} + {beteltPalyaBonusz}";
+
+			
 			/*
 			CarcassoneGame ujAblak = new CarcassoneGame();
 			Application.Current.MainWindow = ujAblak;
@@ -521,9 +564,22 @@ namespace Carcassonne
 		private int UtHossza(string[,] jelenlegiTerkep, int sorIndex, int oszlopIndex)
 		{
 			int mértÚthossz = 0;
-			
+			int seged = 0;
 			string masolat = jelenlegiTerkep[sorIndex, oszlopIndex];
 			jelenlegiTerkep[sorIndex, oszlopIndex] = "0";
+
+			for (int i = 0; i < masolat.Length; i++)
+			{
+				if (masolat[i] == 'U' )
+				{
+					seged++;
+				}
+			}
+
+			if (seged > 2)
+			{
+				mértÚthossz += (seged-1);
+			}
 
 			if (sorIndex > 0 && masolat[ESZAK] == 'U' && jelenlegiTerkep[sorIndex - 1, oszlopIndex] != "0")
 			{
@@ -545,6 +601,114 @@ namespace Carcassonne
 				mértÚthossz += UtHossza(jelenlegiTerkep, sorIndex, oszlopIndex - 1);
 			}
 			return mértÚthossz + 1;
+		}
+
+		private int VarosHossza(string[,] jelenlegiTerkep, int sorIndex, int oszlopIndex)
+		{
+			int mertVaroshossz = 0;
+
+			string masolat = jelenlegiTerkep[sorIndex, oszlopIndex];
+			jelenlegiTerkep[sorIndex, oszlopIndex] = "0";
+
+			if (masolat[KOZEP] == 'V')
+			{
+				mertVaroshossz += 5;
+			}
+			if (sorIndex > 0 && masolat[ESZAK] == 'V' && jelenlegiTerkep[sorIndex - 1, oszlopIndex] != "0")
+			{
+				mertVaroshossz += VarosHossza(jelenlegiTerkep, sorIndex - 1, oszlopIndex);
+			}
+
+			if (sorIndex < sorSzam - 1 && masolat[DEL] == 'V' && jelenlegiTerkep[sorIndex + 1, oszlopIndex] != "0")
+			{
+				mertVaroshossz += VarosHossza(jelenlegiTerkep, sorIndex + 1, oszlopIndex);
+			}
+
+			if (oszlopIndex < oszlopSzam - 1 && masolat[KELET] == 'V' && jelenlegiTerkep[sorIndex, oszlopIndex + 1] != "0")
+			{
+				mertVaroshossz += VarosHossza(jelenlegiTerkep, sorIndex, oszlopIndex + 1);
+			}
+
+			if (oszlopIndex > 0 && masolat[NYUGAT] == 'V' && jelenlegiTerkep[sorIndex, oszlopIndex - 1] != "0")
+			{
+				mertVaroshossz += VarosHossza(jelenlegiTerkep, sorIndex, oszlopIndex - 1);
+			}
+			return mertVaroshossz + 1;
+		}
+
+		private int KolostorPontozas(string[,] jelenlegiTerkep)
+		{
+			int pont = 0;
+			for (int i = 0; i < jelenlegiTerkep.GetLength(0); i++)
+			{
+				for (int j = 0; j < jelenlegiTerkep.GetLength(1); j++)
+				{
+					if (jelenlegiTerkep[i,j] != "0")
+					{
+						if (jelenlegiTerkep[i, j][KOZEP] == 'K')
+						{
+							if (jelenlegiTerkep[i - 1, j] != "0")
+							{
+								pont++;
+							}
+
+							if (jelenlegiTerkep[i + 1, j] != "0")
+							{
+								pont++;
+							}
+
+							if (jelenlegiTerkep[i, j - 1] != "0")
+							{
+								pont++;
+							}
+
+							if (jelenlegiTerkep[i, j + 1] != "0")
+							{
+								pont++;
+							}
+
+							if (jelenlegiTerkep[i - 1, j - 1] != "0")
+							{
+								pont++;
+							}
+
+							if (jelenlegiTerkep[i + 1, j + 1] != "0")
+							{
+								pont++;
+							}
+
+							if (jelenlegiTerkep[i - 1, j + 1] != "0")
+							{
+								pont++;
+							}
+
+							if (jelenlegiTerkep[i + 1, j - 1] != "0")
+							{
+								pont++;
+							}
+						}
+					}
+					
+				}
+			}
+			return pont;
+		}
+
+		private int BetelPalya(string[,] jelenlegiTerkep)
+		{
+			int pont = 10;	
+			for (int i = 0; i < jelenlegiTerkep.GetLength(0); i++)
+			{
+				for (int j = 0; j < jelenlegiTerkep.GetLength(1); j++)
+				{
+					if (jelenlegiTerkep[i,j] != "0")
+					{
+						pont = 0;
+						break;
+					}
+				}
+			}
+			return pont;
 		}
 	}
 }

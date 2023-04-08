@@ -18,7 +18,7 @@
         <Rectangle x:Name="rctFelforditottKartyaFent" Stroke="Black" HorizontalAlignment="Right" VerticalAlignment="Top" Margin=" 0 63 407 0 "  Width="220" Height="220" StrokeThickness="4"/>
         <Rectangle x:Name="rctFelforditottKartyaKozep" Stroke="Black" HorizontalAlignment="Right" VerticalAlignment="Top" Margin=" 0 48 399 0 "  Width="220" Height="220" StrokeThickness="4"/>
 
-        <Label x:Name="lblTeszt" Content="0" Width="100" FontSize="30" Margin="944,393,236,284"/>
+        <Label x:Name="lblTeszt" Content="0" FontSize="30" Margin="887,393,70,284"/>
 
 
         <!--StartGameButton-->
