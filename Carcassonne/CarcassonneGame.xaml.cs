@@ -513,7 +513,7 @@ namespace Carcassonne
 						oszlopIndexUt = oszlopIndexMasolat;
 						UtHossz += UtHossza(tesztTombUt, sorIndexUt, oszlopIndexUt);
 						tesztTombUt[sorIndexMasolat, oszlopIndexMasolat] = "0";
-						break;
+						
 					}
 				}
 			}
@@ -532,7 +532,7 @@ namespace Carcassonne
 						oszlopIndexVaros = j;
 						VarosHossz += VarosHossza(tesztTombVaros, sorIndexVaros,oszlopIndexVaros);
 						tesztTombVaros[i,j] = "0";
-						break;
+						
 					
 					}
 				}
@@ -567,7 +567,7 @@ namespace Carcassonne
 			int seged = 0;
 			string masolat = jelenlegiTerkep[sorIndex, oszlopIndex];
 			jelenlegiTerkep[sorIndex, oszlopIndex] = "0";
-
+			
 			for (int i = 0; i < masolat.Length; i++)
 			{
 				if (masolat[i] == 'U' )
@@ -578,9 +578,9 @@ namespace Carcassonne
 
 			if (seged > 2)
 			{
-				mértÚthossz += (seged-1);
+				mértÚthossz += seged-1;
 			}
-
+			
 			if (sorIndex > 0 && masolat[ESZAK] == 'U' && jelenlegiTerkep[sorIndex - 1, oszlopIndex] != "0")
 			{
 				mértÚthossz += UtHossza(jelenlegiTerkep, sorIndex - 1, oszlopIndex);
