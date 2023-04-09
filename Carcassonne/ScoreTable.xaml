@@ -1,0 +1,21 @@
+﻿<Window x:Class="Carcassonne.ScoreTable"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Carcassonne"
+        mc:Ignorable="d"
+        Title="ScoreTable" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="PontTablazat" IsReadOnly="True" AutoGenerateColumns="False" Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Játék Sorszáma" MinWidth="90" Width="*"/>
+                <DataGridTextColumn Header="Összes Pont" MinWidth="80" Width="*"/>
+                <DataGridTextColumn Header="Út" MinWidth="40" Width="*"/>
+                <DataGridTextColumn Header="Város" MinWidth="40" Width="*"/>
+                <DataGridTextColumn Header="Kolostor" MinWidth="40" Width="*"/>
+                <DataGridTextColumn Header="Bónusz" MinWidth="30" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

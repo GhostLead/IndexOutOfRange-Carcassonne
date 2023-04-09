@@ -116,3 +116,6 @@ F:\Us\Csanád\carcassonneGithub\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debu
 F:\Us\Csanád\carcassonneGithub\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\Carcassonne.pdb
 F:\Us\Csanád\carcassonneGithub\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\Carcassonne.genruntimeconfig.cache
 F:\Us\Csanád\carcassonneGithub\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\ref\Carcassonne.dll
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\DataGridDictionary.baml
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\ScoreTable.g.cs
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\ScoreTable.baml

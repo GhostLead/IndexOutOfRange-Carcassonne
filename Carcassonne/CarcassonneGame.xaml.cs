@@ -109,8 +109,9 @@ namespace Carcassonne
 
 			((Button)(FrameworkElement)sender).Visibility = Visibility.Hidden;
 
+            
 
-		}
+        }
 
 		private void btnExpander_Click(object sender, RoutedEventArgs e)
 		{
@@ -174,7 +175,22 @@ namespace Carcassonne
 
 		private void CreatePlayground()
 		{
-			ugTabla.Opacity = 1;
+
+            BitmapImage bitimg_right = new BitmapImage();
+            BitmapImage bitimg_left = new BitmapImage();
+
+            bitimg_right.BeginInit();
+            bitimg_right.UriSource = new Uri(@"Egyeb\RotateButtonRight.jpg", UriKind.RelativeOrAbsolute);
+            bitimg_right.EndInit();
+            btnJobbraFordit.Background = new ImageBrush(bitimg_right);
+
+            bitimg_left.BeginInit();
+            bitimg_left.UriSource = new Uri(@"Egyeb\RotateButtonLeft.jpg", UriKind.RelativeOrAbsolute);
+            bitimg_left.EndInit();
+            btnBalraFordit.Background = new ImageBrush(bitimg_left);
+
+
+            ugTabla.Opacity = 1;
 			ugTabla.Rows = sorSzam;
 			ugTabla.Columns = oszlopSzam;
 
@@ -734,5 +750,6 @@ namespace Carcassonne
 			}
 			return pont;
 		}
+
 	}
 }

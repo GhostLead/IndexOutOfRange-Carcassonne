@@ -8,23 +8,23 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Tomi\\.nuget\\packages\\": {},
+    "C:\\Users\\Handsome Lucifer\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tomi\\Documents\\GitHub\\IndexOutOfRange-Carcassonne\\Carcassonne\\Carcassonne.csproj",
+      "projectUniqueName": "E:\\C#\\Git\\IndexOutOfRange-Carcassonne\\Carcassonne\\Carcassonne.csproj",
       "projectName": "Carcassonne",
-      "projectPath": "C:\\Users\\Tomi\\Documents\\GitHub\\IndexOutOfRange-Carcassonne\\Carcassonne\\Carcassonne.csproj",
-      "packagesPath": "C:\\Users\\Tomi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tomi\\Documents\\GitHub\\IndexOutOfRange-Carcassonne\\Carcassonne\\obj\\",
+      "projectPath": "E:\\C#\\Git\\IndexOutOfRange-Carcassonne\\Carcassonne\\Carcassonne.csproj",
+      "packagesPath": "C:\\Users\\Handsome Lucifer\\.nuget\\packages\\",
+      "outputPath": "E:\\C#\\Git\\IndexOutOfRange-Carcassonne\\Carcassonne\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Tomi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Handsome Lucifer\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -33,7 +33,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

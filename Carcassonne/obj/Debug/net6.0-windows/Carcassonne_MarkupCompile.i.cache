@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Tomi\Documents\GitHub\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\
 Carcassonne
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\Tomi\Documents\GitHub\IndexOutOfRange-Carcassonne\Carcassonne\App.xaml
-2-663739779
+E:\C#\Git\IndexOutOfRange-Carcassonne\Carcassonne\App.xaml
+4-263894890
 
-8-95124950
+10-1349463188
 194-1617825143
-CarcassonneGame.xaml;Mainwindow.xaml;
+CarcassonneGame.xaml;DataGridDictionary.xaml;Mainwindow.xaml;ScoreTable.xaml;
 
 False
 
