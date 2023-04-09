@@ -556,8 +556,21 @@ namespace Carcassonne
 			}
 			int beteltPalyaBonusz = BeteltPalya(MatrixMasolat(KartyaTomb));
 			lblTeszt.Content = $"{UtHossz} + {VarosHossz} + {KolostorPontozas(MatrixMasolat(KartyaTomb))} + {beteltPalyaBonusz}";
+			string pont = $"0;{UtHossz+VarosHossz+ KolostorPontozas(MatrixMasolat(KartyaTomb))+ beteltPalyaBonusz};{UtHossz};{VarosHossz};{KolostorPontozas(MatrixMasolat(KartyaTomb))};{beteltPalyaBonusz}";
+			List<string> pontLista = new List<string>
+			{
+				pont
+			};
 
-			
+			TextWriter tw = new StreamWriter("ScoreTableData.txt");
+			for (int i = 0; i < pontLista.Count; i++)
+			{
+				tw.WriteLine(pontLista[i]);
+			}
+			tw.Close();
+			ScoreTable stw = new ScoreTable();
+			stw.Show();
+
 			/*
 			CarcassoneGame ujAblak = new CarcassoneGame();
 			Application.Current.MainWindow = ujAblak;
@@ -580,6 +593,7 @@ namespace Carcassonne
 		}
 		private int UtHossza(string[,] jelenlegiTerkep, int sorIndex, int oszlopIndex)
 		{
+ 
 			int mértÚthossz = 0;
 			int seged = 0;
 			string masolat = jelenlegiTerkep[sorIndex, oszlopIndex];
@@ -665,49 +679,46 @@ namespace Carcassonne
 			{
 				for (int oszlopIndex = 0; oszlopIndex < jelenlegiTerkep.GetLength(1); oszlopIndex++)
 				{
-					if (jelenlegiTerkep[sorIndex,oszlopIndex] != "0")
+					if (jelenlegiTerkep[sorIndex,oszlopIndex] != "0" && jelenlegiTerkep[sorIndex, oszlopIndex][KOZEP] == 'K')
 					{
-						if (jelenlegiTerkep[sorIndex, oszlopIndex][KOZEP] == 'K')
+						if (sorIndex > 0 && jelenlegiTerkep[sorIndex - 1, oszlopIndex] != "0")
 						{
-							if (sorIndex > 0 && jelenlegiTerkep[sorIndex - 1, oszlopIndex] != "0")
-							{
-								pont++;
-							}
+							pont++;
+						}
 
-							if (sorIndex < sorSzam - 1 && jelenlegiTerkep[sorIndex + 1, oszlopIndex] != "0")
-							{
-								pont++;
-							}
+						if (sorIndex < sorSzam - 1 && jelenlegiTerkep[sorIndex + 1, oszlopIndex] != "0")
+						{
+							pont++;
+						}
 
-							if (oszlopIndex > 0 && jelenlegiTerkep[sorIndex, oszlopIndex - 1] != "0")
-							{
-								pont++;
-							}
+						if (oszlopIndex > 0 && jelenlegiTerkep[sorIndex, oszlopIndex - 1] != "0")
+						{
+							pont++;
+						}
 
-							if (oszlopIndex < oszlopSzam - 1 && jelenlegiTerkep[sorIndex, oszlopIndex + 1] != "0")
-							{
-								pont++;
-							}
+						if (oszlopIndex < oszlopSzam - 1 && jelenlegiTerkep[sorIndex, oszlopIndex + 1] != "0")
+						{
+							pont++;
+						}
 
-							if ((sorIndex > 0 && oszlopIndex > 0) && jelenlegiTerkep[sorIndex - 1, oszlopIndex - 1] != "0")
-							{
-								pont++;
-							}
+						if ((sorIndex > 0 && oszlopIndex > 0) && jelenlegiTerkep[sorIndex - 1, oszlopIndex - 1] != "0")
+						{
+							pont++;
+						}
 
-							if ((sorIndex < sorSzam - 1 && oszlopIndex < oszlopSzam - 1) && jelenlegiTerkep[sorIndex + 1, oszlopIndex + 1] != "0")
-							{
-								pont++;
-							}
+						if ((sorIndex < sorSzam - 1 && oszlopIndex < oszlopSzam - 1) && jelenlegiTerkep[sorIndex + 1, oszlopIndex + 1] != "0")
+						{
+							pont++;
+						}
 
-							if ((sorIndex > 0 && oszlopIndex < oszlopSzam - 1) &&jelenlegiTerkep[sorIndex - 1, oszlopIndex + 1] != "0")
-							{
-								pont++;
-							}
+						if ((sorIndex > 0 && oszlopIndex < oszlopSzam - 1) && jelenlegiTerkep[sorIndex - 1, oszlopIndex + 1] != "0")
+						{
+							pont++;
+						}
 
-							if ((sorIndex < sorSzam - 1 && oszlopIndex > 0) && jelenlegiTerkep[sorIndex + 1, oszlopIndex - 1] != "0")
-							{
-								pont++;
-							}
+						if ((sorIndex < sorSzam - 1 && oszlopIndex > 0) && jelenlegiTerkep[sorIndex + 1, oszlopIndex - 1] != "0")
+						{
+							pont++;
 						}
 					}
 					

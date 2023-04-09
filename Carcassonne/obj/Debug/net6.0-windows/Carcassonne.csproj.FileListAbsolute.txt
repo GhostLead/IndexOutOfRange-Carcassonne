@@ -140,3 +140,6 @@ F:\Us\Csanád\carcassonne\IndexOutOfRange-Carcassonne-main\Carcassonne\obj\Debug
 F:\Us\Csanád\carcassonne\IndexOutOfRange-Carcassonne-main\Carcassonne\obj\Debug\net6.0-windows\Carcassonne.pdb
 F:\Us\Csanád\carcassonne\IndexOutOfRange-Carcassonne-main\Carcassonne\obj\Debug\net6.0-windows\Carcassonne.genruntimeconfig.cache
 F:\Us\Csanád\carcassonne\IndexOutOfRange-Carcassonne-main\Carcassonne\obj\Debug\net6.0-windows\ref\Carcassonne.dll
+C:\Users\Tomi\Documents\GitHub\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\DataGridDictionary.baml
+C:\Users\Tomi\Documents\GitHub\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\ScoreTable.g.cs
+C:\Users\Tomi\Documents\GitHub\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\ScoreTable.baml

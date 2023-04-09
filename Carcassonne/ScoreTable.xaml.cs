@@ -13,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
+using System.CodeDom.Compiler;
+using Carcassonne;
+
 
 namespace Carcassonne
 {
@@ -26,10 +29,25 @@ namespace Carcassonne
         public ScoreTable()
         {
             InitializeComponent();
-            string[] lines = File.ReadAllLines("ScoreTableData.txt");
+            
 
-            //PontTablazat.ItemsSource = ;
-        }
+            
+            string[] lines = File.ReadAllLines("ScoreTableData.txt");
+            //List<ScoreClass> scores = new List<ScoreClass>();
+            List<ScoreClass> pontozas = new List<ScoreClass>();
+
+			for (int i = 0; i < lines.Length; i++)
+            {
+				string[] pontok = lines[i].Split(';');
+				
+                ScoreClass betoltpont = new ScoreClass(i, Convert.ToInt32(pontok[1]), Convert.ToInt32(pontok[2]), Convert.ToInt32(pontok[3]), Convert.ToInt32(pontok[4]), Convert.ToInt32(pontok[5]));
+                pontozas.Add(betoltpont);
+			}
+            
+            PontTablazat.ItemsSource = pontozas;
+
+
+		}
 
         
 
