@@ -44,6 +44,7 @@ namespace Carcassonne
 		const byte DEL = 4;
 		const byte NYUGAT = 6;
 		const byte KOZEP = 8;
+		const byte CIMER = 10;
 		kartya[,] osztalyTomb = new kartya[8,5];
 		public CarcassoneGame()
 		{
@@ -191,6 +192,7 @@ namespace Carcassonne
 				gomb1.Background = Brushes.ForestGreen;
 				gomb1.Name = $"btnTeruletek{i}";
 				gomb1.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(Button_Click));
+				/*
 				if (i == 17)
 				{
 					BitmapImage bitimg = new BitmapImage();
@@ -203,7 +205,7 @@ namespace Carcassonne
 					gomb1.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OccupiedTileErrorMessage));
 
 				}
-
+				*/
 				ugTabla.Children.Add(gomb1);
 
 			}
@@ -239,7 +241,7 @@ namespace Carcassonne
 			{
 
 				string[] tomb = JelenlegiKartya.Split("_");
-				kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya);
+				kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya, Convert.ToChar(tomb[5]));
 				string uj_nev = kartya.Fordit(generaltKartya, true);
 
 
@@ -268,7 +270,7 @@ namespace Carcassonne
 			else
 			{
 				string[] tomb = JelenlegiKartya.Split("_");
-				kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya);
+				kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya, Convert.ToChar(tomb[5]));
 				string uj_nev = kartya.Fordit(generaltKartya, false);
 
 
@@ -359,7 +361,7 @@ namespace Carcassonne
 						((Button)ugTabla.Children[i]).AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OccupiedTileErrorMessage));
 						string[] tomb = lines[i].Split("_");
 
-						kartya beolvasottKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), lines[i]);
+						kartya beolvasottKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), lines[i], Convert.ToChar(tomb[5]));
 						lista.Add(beolvasottKartya);
 						osztalyTomb[sorindex,oszlopindex] = beolvasottKartya;
 					}
@@ -367,7 +369,7 @@ namespace Carcassonne
 			}
 
 		}
-
+		
 		public void LeRakas(Button gomb)
 		{
 			gomb.Background = rctFelforditottKartya.Fill;
@@ -401,143 +403,160 @@ namespace Carcassonne
 
 		public void Ellenoriz(Button gomb)
 		{
-
 			string[] tomb = JelenlegiKartya.Split('_');
 
-			kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya);
-			lista.Add(generaltKartya);
 
 			string[] tombKetto = gomb.Name.Split("k");
 			int index = Convert.ToInt32(tombKetto[1]);
 			int oszlopindex = index % oszlopSzam;
 			int sorindex = index / oszlopSzam;
-			osztalyTomb[sorindex, oszlopindex] = generaltKartya;
-			KartyaTomb[sorindex, oszlopindex] = generaltKartya.Nev;
-
-
-			bool vanFent = false;
-			bool vanJobb = false;
-			bool vanLent = false;
-			bool vanBal = false;
-			
-			bool fentEllenorzes = true;
-			bool jobbOldaliEllenorzes = true;
-			bool lenitEllenorzes = true;
-			bool balOldaliEllenorzes = true;
-
-
-			if (sorindex - 1 >= 0)
+			if (lista.Count == 0)
 			{
-				if (KartyaTomb[sorindex - 1, oszlopindex] != "0")
-				{
-					vanFent = true;
-					if (vanFent && KartyaTomb[sorindex, oszlopindex][ESZAK] != KartyaTomb[sorindex - 1, oszlopindex][DEL])
-					{
-						fentEllenorzes = false;
-					}
-
-				}
-				
-			}
-			if (oszlopindex + 1 < KartyaTomb.GetLength(1))
-			{
-				if (KartyaTomb[sorindex, oszlopindex + 1] != "0")
-				{
-
-					vanJobb = true;
-					if (vanJobb && KartyaTomb[sorindex, oszlopindex][KELET] != KartyaTomb[sorindex, oszlopindex + 1][NYUGAT])
-					{
-						jobbOldaliEllenorzes = false;
-					}
-				}
-
-			}
-			if (sorindex+1 < KartyaTomb.GetLength(0))
-			{
-				if (KartyaTomb[sorindex + 1, oszlopindex] != "0")
-				{
-					vanLent = true;
-					if ( vanLent && KartyaTomb[sorindex, oszlopindex][DEL] != KartyaTomb[sorindex + 1, oszlopindex][ESZAK])
-					{
-						lenitEllenorzes = false;
-					}
-
-				}
-
-			}
-
-			if (oszlopindex -1 >= 0)
-			{
-				if (KartyaTomb[sorindex, oszlopindex - 1] != "0")
-				{
-					vanBal = true;
-					if (vanBal && KartyaTomb[sorindex, oszlopindex][NYUGAT] != KartyaTomb[sorindex, oszlopindex - 1][KELET])
-					{
-						balOldaliEllenorzes = false;
-					}
-
-				}
-
-			}
-
-			if ((fentEllenorzes == false || jobbOldaliEllenorzes == false || lenitEllenorzes == false || balOldaliEllenorzes == false) ||
-				(vanFent == false && vanJobb == false && vanLent == false && vanBal == false))
-			{
-				KartyaTomb[sorindex, oszlopindex] = "0";
-				lista.Remove(generaltKartya);
-				osztalyTomb[sorindex, oszlopindex] = new kartya();
-				MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
-			}
-			else
-			{
+				kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya, Convert.ToChar(tomb[5]));
+				lista.Add(generaltKartya);
+				osztalyTomb[sorindex, oszlopindex] = generaltKartya;
+				KartyaTomb[sorindex, oszlopindex] = generaltKartya.Nev;
 				LeRakas(gomb);
 			}
 
+			else 
+			{ 
+
+				kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya, Convert.ToChar(tomb[5]));
+				lista.Add(generaltKartya);
+				osztalyTomb[sorindex, oszlopindex] = generaltKartya;
+				KartyaTomb[sorindex, oszlopindex] = generaltKartya.Nev;
+
+		
+
+				bool vanFent = false;
+				bool vanJobb = false;
+				bool vanLent = false;
+				bool vanBal = false;
+			
+				bool fentEllenorzes = true;
+				bool jobbOldaliEllenorzes = true;
+				bool lenitEllenorzes = true;
+				bool balOldaliEllenorzes = true;
+
+
+				if (sorindex - 1 >= 0)
+				{
+					if (KartyaTomb[sorindex - 1, oszlopindex] != "0")
+					{
+						vanFent = true;
+						if (vanFent && KartyaTomb[sorindex, oszlopindex][ESZAK] != KartyaTomb[sorindex - 1, oszlopindex][DEL])
+						{
+							fentEllenorzes = false;
+						}
+
+					}
+				
+				}
+				if (oszlopindex + 1 < KartyaTomb.GetLength(1))
+				{
+					if (KartyaTomb[sorindex, oszlopindex + 1] != "0")
+					{
+
+						vanJobb = true;
+						if (vanJobb && KartyaTomb[sorindex, oszlopindex][KELET] != KartyaTomb[sorindex, oszlopindex + 1][NYUGAT])
+						{
+							jobbOldaliEllenorzes = false;
+						}
+					}
+
+				}
+				if (sorindex+1 < KartyaTomb.GetLength(0))
+				{
+					if (KartyaTomb[sorindex + 1, oszlopindex] != "0")
+					{
+						vanLent = true;
+						if ( vanLent && KartyaTomb[sorindex, oszlopindex][DEL] != KartyaTomb[sorindex + 1, oszlopindex][ESZAK])
+						{
+							lenitEllenorzes = false;
+						}
+
+					}
+
+				}
+
+				if (oszlopindex -1 >= 0)
+				{
+					if (KartyaTomb[sorindex, oszlopindex - 1] != "0")
+					{
+						vanBal = true;
+						if (vanBal && KartyaTomb[sorindex, oszlopindex][NYUGAT] != KartyaTomb[sorindex, oszlopindex - 1][KELET])
+						{
+							balOldaliEllenorzes = false;
+						}
+
+					}
+
+				}
+
+				if ((fentEllenorzes == false || jobbOldaliEllenorzes == false || lenitEllenorzes == false || balOldaliEllenorzes == false) ||
+					(vanFent == false && vanJobb == false && vanLent == false && vanBal == false))
+				{
+					KartyaTomb[sorindex, oszlopindex] = "0";
+					lista.Remove(generaltKartya);
+					osztalyTomb[sorindex, oszlopindex] = new kartya();
+					MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
+				}
+				else
+				{
+					LeRakas(gomb);
+				}
+			}
 
 		}
 		
 		private void btnBefejez_Click(object sender, RoutedEventArgs e)
 		{
-			int sorIndexUt = 0;
-			int oszlopIndexUt = 0;
 			int UtHossz = 0;
 			string[,] tesztTombUt = MatrixMasolat(KartyaTomb);
-			for (int sorIndexMasolat = 0; sorIndexMasolat < tesztTombUt.GetLength(0); sorIndexMasolat++)
+			for (int sorIndexMasolatUt = 0; sorIndexMasolatUt < tesztTombUt.GetLength(0); sorIndexMasolatUt++)
 			{
-				for (int oszlopIndexMasolat = 0; oszlopIndexMasolat < tesztTombUt.GetLength(1); oszlopIndexMasolat++)
+				for (int oszlopIndexMasolatUt = 0; oszlopIndexMasolatUt < tesztTombUt.GetLength(1); oszlopIndexMasolatUt++)
 				{
-					if (tesztTombUt[sorIndexMasolat, oszlopIndexMasolat].Contains('U'))
+					if (tesztTombUt[sorIndexMasolatUt, oszlopIndexMasolatUt].Contains('U'))
 					{
 
-						sorIndexUt = sorIndexMasolat;
-						oszlopIndexUt = oszlopIndexMasolat;
+						int sorIndexUt = sorIndexMasolatUt;
+						int oszlopIndexUt = oszlopIndexMasolatUt;
 						UtHossz += UtHossza(tesztTombUt, sorIndexUt, oszlopIndexUt);
-						tesztTombUt[sorIndexMasolat, oszlopIndexMasolat] = "0";
+						tesztTombUt[sorIndexMasolatUt, oszlopIndexMasolatUt] = "0";
 						
 					}
 				}
 			}
 
 			int VarosHossz = 0;
-			int sorIndexVaros = 0;
-			int oszlopIndexVaros = 0;
 			string[,] tesztTombVaros = MatrixMasolat(KartyaTomb);
-			for (int i = 0; i < tesztTombVaros.GetLength(0); i++)
+			for (int sorIndexMasolatVaros = 0; sorIndexMasolatVaros < tesztTombVaros.GetLength(0); sorIndexMasolatVaros++)
 			{
-				for (int j = 0; j < tesztTombVaros.GetLength(1); j++)
+				for (int oszlopIndexMasolatVaros = 0; oszlopIndexMasolatVaros < tesztTombVaros.GetLength(1); oszlopIndexMasolatVaros++)
 				{
-					if (tesztTombVaros[i, j].Contains('V'))
+					if (tesztTombVaros[sorIndexMasolatVaros, oszlopIndexMasolatVaros].Contains('V'))
 					{
-						sorIndexVaros = i;
-						oszlopIndexVaros = j;
-						VarosHossz += VarosHossza(tesztTombVaros, sorIndexVaros,oszlopIndexVaros);
-						tesztTombVaros[i,j] = "0";
+						int sorIndexVaros = sorIndexMasolatVaros;
+						int oszlopIndexVaros = oszlopIndexMasolatVaros;
+						if (tesztTombVaros[sorIndexMasolatVaros, oszlopIndexMasolatVaros][KOZEP] == 'V')
+						{
+							VarosHossz += VarosHossza(tesztTombVaros, sorIndexVaros, oszlopIndexVaros);
+							tesztTombVaros[sorIndexMasolatVaros, oszlopIndexMasolatVaros] = "0";
+						}
+						else
+						{
+							VarosHossz += (VarosHossza(tesztTombVaros, sorIndexVaros,oszlopIndexVaros))*2;
+							tesztTombVaros[sorIndexMasolatVaros,oszlopIndexMasolatVaros] = "0";
+
+						}
 						
 					
 					}
 				}
 			}
-			int beteltPalyaBonusz = BetelPalya(MatrixMasolat(KartyaTomb));
+			int beteltPalyaBonusz = BeteltPalya(MatrixMasolat(KartyaTomb));
 			lblTeszt.Content = $"{UtHossz} + {VarosHossz} + {KolostorPontozas(MatrixMasolat(KartyaTomb))} + {beteltPalyaBonusz}";
 
 			
@@ -606,83 +625,88 @@ namespace Carcassonne
 		private int VarosHossza(string[,] jelenlegiTerkep, int sorIndex, int oszlopIndex)
 		{
 			int mertVaroshossz = 0;
-
 			string masolat = jelenlegiTerkep[sorIndex, oszlopIndex];
 			jelenlegiTerkep[sorIndex, oszlopIndex] = "0";
-
+			
 			if (masolat[KOZEP] == 'V')
 			{
 				mertVaroshossz += 5;
+				return mertVaroshossz;
 			}
-			if (sorIndex > 0 && masolat[ESZAK] == 'V' && jelenlegiTerkep[sorIndex - 1, oszlopIndex] != "0")
+			
+			else
 			{
-				mertVaroshossz += VarosHossza(jelenlegiTerkep, sorIndex - 1, oszlopIndex);
-			}
+				if (sorIndex > 0 && masolat[ESZAK] == 'V' && jelenlegiTerkep[sorIndex - 1, oszlopIndex] != "0")
+				{
+					mertVaroshossz += VarosHossza(jelenlegiTerkep, sorIndex - 1, oszlopIndex);
+				}
 
-			if (sorIndex < sorSzam - 1 && masolat[DEL] == 'V' && jelenlegiTerkep[sorIndex + 1, oszlopIndex] != "0")
-			{
-				mertVaroshossz += VarosHossza(jelenlegiTerkep, sorIndex + 1, oszlopIndex);
-			}
+				if (sorIndex < sorSzam - 1 && masolat[DEL] == 'V' && jelenlegiTerkep[sorIndex + 1, oszlopIndex] != "0")
+				{
+					mertVaroshossz += VarosHossza(jelenlegiTerkep, sorIndex + 1, oszlopIndex);
+				}
 
-			if (oszlopIndex < oszlopSzam - 1 && masolat[KELET] == 'V' && jelenlegiTerkep[sorIndex, oszlopIndex + 1] != "0")
-			{
-				mertVaroshossz += VarosHossza(jelenlegiTerkep, sorIndex, oszlopIndex + 1);
-			}
+				if (oszlopIndex < oszlopSzam - 1 && masolat[KELET] == 'V' && jelenlegiTerkep[sorIndex, oszlopIndex + 1] != "0")
+				{
+					mertVaroshossz += VarosHossza(jelenlegiTerkep, sorIndex, oszlopIndex + 1);
+				}
 
-			if (oszlopIndex > 0 && masolat[NYUGAT] == 'V' && jelenlegiTerkep[sorIndex, oszlopIndex - 1] != "0")
-			{
-				mertVaroshossz += VarosHossza(jelenlegiTerkep, sorIndex, oszlopIndex - 1);
+				if (oszlopIndex > 0 && masolat[NYUGAT] == 'V' && jelenlegiTerkep[sorIndex, oszlopIndex - 1] != "0")
+				{
+					mertVaroshossz += VarosHossza(jelenlegiTerkep, sorIndex, oszlopIndex - 1);
+				}
+				return mertVaroshossz + 1;
+
 			}
-			return mertVaroshossz + 1;
 		}
 
 		private int KolostorPontozas(string[,] jelenlegiTerkep)
 		{
 			int pont = 0;
-			for (int i = 0; i < jelenlegiTerkep.GetLength(0); i++)
+			for (int sorIndex = 0; sorIndex < jelenlegiTerkep.GetLength(0); sorIndex++)
 			{
-				for (int j = 0; j < jelenlegiTerkep.GetLength(1); j++)
+				for (int oszlopIndex = 0; oszlopIndex < jelenlegiTerkep.GetLength(1); oszlopIndex++)
 				{
-					if (jelenlegiTerkep[i,j] != "0")
+					if (jelenlegiTerkep[sorIndex,oszlopIndex] != "0")
 					{
-						if (jelenlegiTerkep[i, j][KOZEP] == 'K')
+						if (jelenlegiTerkep[sorIndex, oszlopIndex][KOZEP] == 'K')
 						{
-							if (jelenlegiTerkep[i - 1, j] != "0")
+							if (sorIndex > 0 && jelenlegiTerkep[sorIndex - 1, oszlopIndex] != "0")
 							{
 								pont++;
 							}
 
-							if (jelenlegiTerkep[i + 1, j] != "0")
+							if (sorIndex < sorSzam - 1 && jelenlegiTerkep[sorIndex + 1, oszlopIndex] != "0")
 							{
 								pont++;
 							}
 
-							if (jelenlegiTerkep[i, j - 1] != "0")
+							if (oszlopIndex > 0 && jelenlegiTerkep[sorIndex, oszlopIndex - 1] != "0")
 							{
 								pont++;
 							}
 
-							if (jelenlegiTerkep[i, j + 1] != "0")
+							if (oszlopIndex < oszlopSzam - 1 && jelenlegiTerkep[sorIndex, oszlopIndex + 1] != "0")
 							{
 								pont++;
 							}
 
-							if (jelenlegiTerkep[i - 1, j - 1] != "0")
+							if ((sorIndex > 0 && oszlopIndex > 0) && jelenlegiTerkep[sorIndex - 1, oszlopIndex - 1] != "0")
 							{
 								pont++;
 							}
 
-							if (jelenlegiTerkep[i + 1, j + 1] != "0")
+							if ((sorIndex < sorSzam - 1 && oszlopIndex < oszlopSzam - 1) && jelenlegiTerkep[sorIndex + 1, oszlopIndex + 1] != "0")
 							{
 								pont++;
 							}
 
-							if (jelenlegiTerkep[i - 1, j + 1] != "0")
+							if ((sorIndex > 0 && oszlopIndex < oszlopSzam - 1) &&jelenlegiTerkep[sorIndex - 1, oszlopIndex + 1] != "0")
 							{
 								pont++;
 							}
 
-							if (jelenlegiTerkep[i + 1, j - 1] != "0")
+							if ((sorIndex < sorSzam - 1 && oszlopIndex > 0) && jelenlegiTerkep[sorIndex + 1, oszlopIndex - 1] != "0")
 							{
 								pont++;
 							}
@@ -694,7 +718,7 @@ namespace Carcassonne
 			return pont;
 		}
 
-		private int BetelPalya(string[,] jelenlegiTerkep)
+		private int BeteltPalya(string[,] jelenlegiTerkep)
 		{
 			int pont = 10;	
 			for (int i = 0; i < jelenlegiTerkep.GetLength(0); i++)

@@ -14,10 +14,11 @@ namespace Carcassonne
 		char miJobb;
 		char miBal;
 		char miKozep;
+		char cimer;
 		bool uresKartya;
 		const int SOROK_SZAMA = 8;
 		const int OSZLOPOK_SZAMA = 5;
-		public kartya(char miFel, char miJobb, char miLe, char miBal, char miKozep, string nev)
+		public kartya(char miFel, char miJobb, char miLe, char miBal, char miKozep, string nev, char cimer)
 		{
 			this.miFel = miFel;
 			this.miJobb = miJobb;
@@ -25,6 +26,8 @@ namespace Carcassonne
 			this.miBal = miBal;
 			this.miKozep = miKozep;
 			this.nev = nev;
+			this.cimer = cimer;
+
 		}
 
 		public kartya()
@@ -39,7 +42,7 @@ namespace Carcassonne
 		public char MiKozep { get => miKozep;}
 		public string Nev { get => nev;}
 		public bool UresKartya { get => uresKartya;}
-
+		public char Cimer { get => cimer;}
 
 		public static string Fordit(kartya kartyNev, bool jobbVagyBal)
 		{
@@ -57,7 +60,7 @@ namespace Carcassonne
 				kartyNev.miJobb = felul;
 				kartyNev.miLe = jobbra;
 				kartyNev.miBal = lent;
-				kartyNev.nev = kartyNev.miFel + "_" + kartyNev.miJobb + "_" + kartyNev.miLe + "_" + kartyNev.miBal + "_" + kartyNev.miKozep;
+				kartyNev.nev = kartyNev.miFel + "_" + kartyNev.miJobb + "_" + kartyNev.miLe + "_" + kartyNev.miBal + "_" + kartyNev.miKozep + "_" + kartyNev.cimer;
 
 				return kartyNev.nev;
 			}
@@ -75,7 +78,7 @@ namespace Carcassonne
 				kartyNev.miJobb = alul;
 				kartyNev.miLe = balra;
 				kartyNev.miBal = felul;
-				kartyNev.nev = kartyNev.miFel + "_" + kartyNev.miJobb + "_" + kartyNev.miLe + "_" + kartyNev.miBal + "_" + kartyNev.miKozep;
+				kartyNev.nev = kartyNev.miFel + "_" + kartyNev.miJobb + "_" + kartyNev.miLe + "_" + kartyNev.miBal + "_" + kartyNev.miKozep + "_" + kartyNev.cimer;
 
 				return kartyNev.nev;
 			}
