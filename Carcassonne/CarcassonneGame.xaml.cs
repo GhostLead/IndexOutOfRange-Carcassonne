@@ -646,7 +646,7 @@ namespace Carcassonne
 			
 			if (masolat[KOZEP] == 'V')
 			{
-				mertVaroshossz += 5;
+				mertVaroshossz += 7;
 				return mertVaroshossz;
 			}
 			
