@@ -32,6 +32,19 @@ namespace Carcassonne
 
             SetBackground();
             PlayAudio();
+            BitmapImage bitimgEnabled = new BitmapImage();
+            bitimgEnabled.BeginInit();
+            bitimgEnabled.UriSource = new Uri(@"Egyeb\enable.png", UriKind.RelativeOrAbsolute);
+            bitimgEnabled.DecodePixelWidth = 60;
+            bitimgEnabled.DecodePixelHeight = 60;
+            bitimgEnabled.EndInit();
+            btnEnabled.Background = new ImageBrush(bitimgEnabled);
+
+            BitmapImage bitimgDisabled = new BitmapImage();
+            bitimgDisabled.BeginInit();
+            bitimgDisabled.UriSource = new Uri(@"Egyeb\mute.png", UriKind.RelativeOrAbsolute);
+            bitimgDisabled.EndInit();
+            btnDisabled.Background = new ImageBrush(bitimgDisabled);
 
         }
 
@@ -60,16 +73,23 @@ namespace Carcassonne
             this.Close();
         }
 
-        private void btnSettings_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        
+        private void btnEnabled_Click(object sender, RoutedEventArgs e)
+        {
+            mediaPlayer.Stop();
+            btnEnabled.Visibility = Visibility.Hidden;
+            btnDisabled.Visibility = Visibility.Visible;
+        }
+
+        private void btnDisabled_Click(object sender, RoutedEventArgs e)
+        {
+            mediaPlayer.PlayLooping();
+            btnDisabled.Visibility = Visibility.Hidden;
+            btnEnabled.Visibility = Visibility.Visible;
+        }
     }
 }

@@ -10,18 +10,9 @@
     <Compile Update="CarcassonneGame.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="ScoreTable.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="CarcassonneGame.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="DataGridDictionary.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="ScoreTable.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

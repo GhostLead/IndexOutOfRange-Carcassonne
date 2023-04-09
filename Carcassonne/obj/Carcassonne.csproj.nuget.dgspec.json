@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\C#\\Git\\IndexOutOfRange-Carcassonne\\Carcassonne\\Carcassonne.csproj": {}
+    "F:\\Us\\Csanád\\carcassonne\\IndexOutOfRange-Carcassonne-main\\Carcassonne\\Carcassonne.csproj": {}
   },
   "projects": {
-    "E:\\C#\\Git\\IndexOutOfRange-Carcassonne\\Carcassonne\\Carcassonne.csproj": {
+    "F:\\Us\\Csanád\\carcassonne\\IndexOutOfRange-Carcassonne-main\\Carcassonne\\Carcassonne.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\C#\\Git\\IndexOutOfRange-Carcassonne\\Carcassonne\\Carcassonne.csproj",
+        "projectUniqueName": "F:\\Us\\Csanád\\carcassonne\\IndexOutOfRange-Carcassonne-main\\Carcassonne\\Carcassonne.csproj",
         "projectName": "Carcassonne",
-        "projectPath": "E:\\C#\\Git\\IndexOutOfRange-Carcassonne\\Carcassonne\\Carcassonne.csproj",
-        "packagesPath": "C:\\Users\\Handsome Lucifer\\.nuget\\packages\\",
-        "outputPath": "E:\\C#\\Git\\IndexOutOfRange-Carcassonne\\Carcassonne\\obj\\",
+        "projectPath": "F:\\Us\\Csanád\\carcassonne\\IndexOutOfRange-Carcassonne-main\\Carcassonne\\Carcassonne.csproj",
+        "packagesPath": "C:\\Users\\gcsan\\.nuget\\packages\\",
+        "outputPath": "F:\\Us\\Csanád\\carcassonne\\IndexOutOfRange-Carcassonne-main\\Carcassonne\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Handsome Lucifer\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\gcsan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -62,7 +58,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

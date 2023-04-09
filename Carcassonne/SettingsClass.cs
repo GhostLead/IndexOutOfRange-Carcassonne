@@ -11,7 +11,6 @@ namespace Carcassonne
 
         bool enableMusic = true;
         bool enableSoundEffects = true;
-        bool fullScreen = false;
         bool timeMode = false;
 
     }

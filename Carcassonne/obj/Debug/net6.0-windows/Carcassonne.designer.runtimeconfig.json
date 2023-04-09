@@ -12,9 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\Handsome Lucifer\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Handsome Lucifer\\.nuget\\packages",
-      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      "C:\\Users\\gcsan\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\gcsan\\.nuget\\packages"
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true

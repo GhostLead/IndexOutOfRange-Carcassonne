@@ -46,7 +46,8 @@ namespace Carcassonne
 		const byte KOZEP = 8;
 		const byte CIMER = 10;
 		kartya[,] osztalyTomb = new kartya[8,5];
-		public CarcassoneGame()
+        SoundPlayer soundPlayer = new SoundPlayer("Card-Flip-Sound.wav");
+        public CarcassoneGame()
 		{
 			InitializeComponent();
 
@@ -57,7 +58,8 @@ namespace Carcassonne
 			NavbarButtonsHidden();
 
 
-		}
+
+        }
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
@@ -109,9 +111,8 @@ namespace Carcassonne
 
 			((Button)(FrameworkElement)sender).Visibility = Visibility.Hidden;
 
-            
 
-        }
+		}
 
 		private void btnExpander_Click(object sender, RoutedEventArgs e)
 		{
@@ -144,8 +145,6 @@ namespace Carcassonne
 
 		private void CardPlacementSound()
 		{
-
-			SoundPlayer soundPlayer = new SoundPlayer("Card-Flip-Sound.wav");
 			soundPlayer.Load();
 			soundPlayer.Play();
 		}
@@ -175,22 +174,7 @@ namespace Carcassonne
 
 		private void CreatePlayground()
 		{
-
-            BitmapImage bitimg_right = new BitmapImage();
-            BitmapImage bitimg_left = new BitmapImage();
-
-            bitimg_right.BeginInit();
-            bitimg_right.UriSource = new Uri(@"Egyeb\RotateButtonRight.jpg", UriKind.RelativeOrAbsolute);
-            bitimg_right.EndInit();
-            btnJobbraFordit.Background = new ImageBrush(bitimg_right);
-
-            bitimg_left.BeginInit();
-            bitimg_left.UriSource = new Uri(@"Egyeb\RotateButtonLeft.jpg", UriKind.RelativeOrAbsolute);
-            bitimg_left.EndInit();
-            btnBalraFordit.Background = new ImageBrush(bitimg_left);
-
-
-            ugTabla.Opacity = 1;
+			ugTabla.Opacity = 1;
 			ugTabla.Rows = sorSzam;
 			ugTabla.Columns = oszlopSzam;
 
@@ -230,7 +214,6 @@ namespace Carcassonne
 		private void NavbarButtonsHidden()
 		{
 			btnSave.Visibility = Visibility.Hidden;
-			btnSettings.Visibility = Visibility.Hidden;
 			btnExit.Visibility = Visibility.Hidden;
 			btnBetolt.Visibility = Visibility.Hidden;
 			btnBefejez.Visibility = Visibility.Hidden;
@@ -239,7 +222,6 @@ namespace Carcassonne
 		private void NavbarButtonsVisible()
 		{
 			btnSave.Visibility = Visibility.Visible;
-			btnSettings.Visibility = Visibility.Visible;
 			btnExit.Visibility = Visibility.Visible;
 			btnBetolt.Visibility = Visibility.Visible;
 			btnBefejez.Visibility = Visibility.Visible;
@@ -385,8 +367,8 @@ namespace Carcassonne
 			}
 
 		}
-		
-		public void LeRakas(Button gomb)
+
+        public void LeRakas(Button gomb)
 		{
 			gomb.Background = rctFelforditottKartya.Fill;
 			Random rnd = new Random();
@@ -750,6 +732,5 @@ namespace Carcassonne
 			}
 			return pont;
 		}
-
 	}
 }
