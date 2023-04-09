@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Us\\Csanád\\carcassonne\\IndexOutOfRange-Carcassonne-main\\Carcassonne\\Carcassonne.csproj": {}
+    "F:\\Us\\Csanád\\carcassonneGithub\\IndexOutOfRange-Carcassonne\\Carcassonne\\Carcassonne.csproj": {}
   },
   "projects": {
-    "F:\\Us\\Csanád\\carcassonne\\IndexOutOfRange-Carcassonne-main\\Carcassonne\\Carcassonne.csproj": {
+    "F:\\Us\\Csanád\\carcassonneGithub\\IndexOutOfRange-Carcassonne\\Carcassonne\\Carcassonne.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Us\\Csanád\\carcassonne\\IndexOutOfRange-Carcassonne-main\\Carcassonne\\Carcassonne.csproj",
+        "projectUniqueName": "F:\\Us\\Csanád\\carcassonneGithub\\IndexOutOfRange-Carcassonne\\Carcassonne\\Carcassonne.csproj",
         "projectName": "Carcassonne",
-        "projectPath": "F:\\Us\\Csanád\\carcassonne\\IndexOutOfRange-Carcassonne-main\\Carcassonne\\Carcassonne.csproj",
+        "projectPath": "F:\\Us\\Csanád\\carcassonneGithub\\IndexOutOfRange-Carcassonne\\Carcassonne\\Carcassonne.csproj",
         "packagesPath": "C:\\Users\\gcsan\\.nuget\\packages\\",
-        "outputPath": "F:\\Us\\Csanád\\carcassonne\\IndexOutOfRange-Carcassonne-main\\Carcassonne\\obj\\",
+        "outputPath": "F:\\Us\\Csanád\\carcassonneGithub\\IndexOutOfRange-Carcassonne\\Carcassonne\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gcsan\\AppData\\Roaming\\NuGet\\NuGet.Config",

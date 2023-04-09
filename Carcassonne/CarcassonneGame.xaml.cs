@@ -723,7 +723,7 @@ namespace Carcassonne
 			{
 				for (int j = 0; j < jelenlegiTerkep.GetLength(1); j++)
 				{
-					if (jelenlegiTerkep[i,j] != "0")
+					if (jelenlegiTerkep[i,j] == "0")
 					{
 						pont = 0;
 						break;
