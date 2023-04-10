@@ -40,7 +40,7 @@ namespace Carcassonne
             {
 				string[] pontok = lines[i].Split(';');
 				
-                ScoreClass betoltpont = new ScoreClass(i, Convert.ToInt32(pontok[1]), Convert.ToInt32(pontok[2]), Convert.ToInt32(pontok[3]), Convert.ToInt32(pontok[4]), Convert.ToInt32(pontok[5]));
+                ScoreClass betoltpont = new ScoreClass(Convert.ToString(pontok[0]), Convert.ToInt32(pontok[1]), Convert.ToInt32(pontok[2]), Convert.ToInt32(pontok[3]), Convert.ToInt32(pontok[4]), Convert.ToInt32(pontok[5]));
                 pontozas.Add(betoltpont);
 			}
             

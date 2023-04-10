@@ -47,7 +47,11 @@ namespace Carcassonne
 		const byte CIMER = 10;
 		kartya[,] osztalyTomb = new kartya[8,5];
         SoundPlayer soundPlayer = new SoundPlayer("Card-Flip-Sound.wav");
-        public CarcassoneGame()
+		string pont = "";
+		int UtHossz = 0;
+		int VarosHossz = 0;
+		int beteltPalyaBonusz = 0;
+		public CarcassoneGame()
 		{
 			InitializeComponent();
 
@@ -510,7 +514,7 @@ namespace Carcassonne
 		
 		private void btnBefejez_Click(object sender, RoutedEventArgs e)
 		{
-			int UtHossz = 0;
+			UtHossz = 0;
 			string[,] tesztTombUt = MatrixMasolat(KartyaTomb);
 			for (int sorIndexMasolatUt = 0; sorIndexMasolatUt < tesztTombUt.GetLength(0); sorIndexMasolatUt++)
 			{
@@ -528,7 +532,7 @@ namespace Carcassonne
 				}
 			}
 
-			int VarosHossz = 0;
+			VarosHossz = 0;
 			string[,] tesztTombVaros = MatrixMasolat(KartyaTomb);
 			for (int sorIndexMasolatVaros = 0; sorIndexMasolatVaros < tesztTombVaros.GetLength(0); sorIndexMasolatVaros++)
 			{
@@ -554,29 +558,20 @@ namespace Carcassonne
 					}
 				}
 			}
-			int beteltPalyaBonusz = BeteltPalya(MatrixMasolat(KartyaTomb));
-			lblTeszt.Content = $"{UtHossz} + {VarosHossz} + {KolostorPontozas(MatrixMasolat(KartyaTomb))} + {beteltPalyaBonusz}";
-			string pont = $"0;{UtHossz+VarosHossz+ KolostorPontozas(MatrixMasolat(KartyaTomb))+ beteltPalyaBonusz};{UtHossz};{VarosHossz};{KolostorPontozas(MatrixMasolat(KartyaTomb))};{beteltPalyaBonusz}";
-			List<string> pontLista = new List<string>
-			{
-				pont
-			};
+			beteltPalyaBonusz = BeteltPalya(MatrixMasolat(KartyaTomb));
 
-			TextWriter tw = new StreamWriter("ScoreTableData.txt");
-			for (int i = 0; i < pontLista.Count; i++)
-			{
-				tw.WriteLine(pontLista[i]);
-			}
-			tw.Close();
-			ScoreTable stw = new ScoreTable();
-			stw.Show();
-
+			lblNevBekuld.Visibility = Visibility.Visible;
+			txtNevBekuld.Visibility = Visibility.Visible;
+			btnNevBekuld.Visibility = Visibility.Visible;
+			
 			/*
 			CarcassoneGame ujAblak = new CarcassoneGame();
 			Application.Current.MainWindow = ujAblak;
 			ujAblak.Show();
 			this.Close();
 			*/
+			
+			
 		}
 
 		private string[,] MatrixMasolat(string[,] matrix)
@@ -645,7 +640,13 @@ namespace Carcassonne
 				mertVaroshossz += 7;
 				return mertVaroshossz;
 			}
-			
+
+			if (masolat[CIMER] == 'C')
+			{
+				mertVaroshossz += 2;
+				return mertVaroshossz;
+			}
+
 			else
 			{
 				if (sorIndex > 0 && masolat[ESZAK] == 'V' && jelenlegiTerkep[sorIndex - 1, oszlopIndex] != "0")
@@ -742,6 +743,39 @@ namespace Carcassonne
 				}
 			}
 			return pont;
+		}
+
+		private void btnNrvBekuld_Click(object sender, RoutedEventArgs e)
+		{
+
+			if (txtNevBekuld.Text == null)
+			{
+				MessageBox.Show("Kérem adjon meg egy nevet a mentés előtt!");
+			}
+
+			else
+			{
+				pont = $"{txtNevBekuld.Text};{UtHossz + VarosHossz + KolostorPontozas(MatrixMasolat(KartyaTomb)) + beteltPalyaBonusz};{UtHossz};{VarosHossz};" +
+					$"{KolostorPontozas(MatrixMasolat(KartyaTomb))};{beteltPalyaBonusz}";
+
+				List<string> pontLista = new List<string>
+				{
+					pont
+				};
+				string myFile = @"ScoreTableData.txt";
+
+				using (StreamWriter sw = File.AppendText(myFile))
+				{
+					for (int i = 0; i < pontLista.Count; i++)
+					{
+						sw.WriteLine(pontLista[i]);
+					}
+					sw.Close();
+				}
+				ScoreTable stw = new ScoreTable();
+				stw.Show();
+
+			}
 		}
 	}
 }

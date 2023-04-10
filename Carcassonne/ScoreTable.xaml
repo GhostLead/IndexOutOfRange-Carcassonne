@@ -9,7 +9,7 @@
     <Grid>
         <DataGrid x:Name="PontTablazat" IsReadOnly="True" AutoGenerateColumns="False" Margin="10">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Játék Sorszáma"  MinWidth="90" Width="*"/>
+                <DataGridTextColumn Header="Játékos Neve" Binding="{Binding Nev}"  MinWidth="90" Width="*"/>
                 <DataGridTextColumn Header="Összes Pont" Binding="{Binding OsszesPont}" MinWidth="80" Width="*"/>
                 <DataGridTextColumn Header="Út" Binding="{Binding Ut}" MinWidth="40" Width="*"/>
                 <DataGridTextColumn Header="Város" Binding="{Binding Varos}" MinWidth="40" Width="*"/>

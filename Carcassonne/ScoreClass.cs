@@ -8,15 +8,15 @@ namespace Carcassonne
 {
     class ScoreClass
     {
-        int sorszam = 0;
+		string nev = "";
         int osszesPont = 0;
         int ut = 0;
         int varos = 0;
         int kolostor = 0;
         int bonusz = 0;
-		public ScoreClass(int sorszam, int osszesPont, int ut, int varos, int kolostor, int bonusz)
+		public ScoreClass(string nev, int osszesPont, int ut, int varos, int kolostor, int bonusz)
 		{
-			this.sorszam = sorszam;
+			this.nev = nev;
 			this.osszesPont = osszesPont;
 			this.ut = ut;
 			this.varos = varos;
@@ -25,7 +25,7 @@ namespace Carcassonne
 		}
 
 
-		public int Sorszam { get => sorszam;}
+		public string Nev { get => nev;}
 		public int OsszesPont { get => osszesPont;}
 		public int Ut { get => ut;}
 		public int Varos { get => varos;}
