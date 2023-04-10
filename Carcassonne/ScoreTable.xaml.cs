@@ -24,9 +24,9 @@ namespace Carcassonne
     /// </summary>
     public partial class ScoreTable : Window
     {
-        
-        
-        public ScoreTable()
+
+		List<ScoreClass> pontozas = new List<ScoreClass>();
+		public ScoreTable()
         {
             InitializeComponent();
             
@@ -34,7 +34,7 @@ namespace Carcassonne
             
             string[] lines = File.ReadAllLines("ScoreTableData.txt");
             //List<ScoreClass> scores = new List<ScoreClass>();
-            List<ScoreClass> pontozas = new List<ScoreClass>();
+            
 
 			for (int i = 0; i < lines.Length; i++)
             {
@@ -43,13 +43,11 @@ namespace Carcassonne
                 ScoreClass betoltpont = new ScoreClass(Convert.ToString(pontok[0]), Convert.ToInt32(pontok[1]), Convert.ToInt32(pontok[2]), Convert.ToInt32(pontok[3]), Convert.ToInt32(pontok[4]), Convert.ToInt32(pontok[5]));
                 pontozas.Add(betoltpont);
 			}
-            
+
             PontTablazat.ItemsSource = pontozas;
 
 
 		}
 
-        
-
-    }
+	}
 }

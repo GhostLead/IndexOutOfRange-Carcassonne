@@ -219,16 +219,16 @@ namespace Carcassonne
 		{
 			btnSave.Visibility = Visibility.Hidden;
 			btnExit.Visibility = Visibility.Hidden;
-			btnBetolt.Visibility = Visibility.Hidden;
-			btnBefejez.Visibility = Visibility.Hidden;
+			btnLoad.Visibility = Visibility.Hidden;
+			btnFinish.Visibility = Visibility.Hidden;
 		}
 
 		private void NavbarButtonsVisible()
 		{
 			btnSave.Visibility = Visibility.Visible;
 			btnExit.Visibility = Visibility.Visible;
-			btnBetolt.Visibility = Visibility.Visible;
-			btnBefejez.Visibility = Visibility.Visible;
+			btnLoad.Visibility = Visibility.Visible;
+			btnFinish.Visibility = Visibility.Visible;
 		}
 
 		private void btnJobbraFordit_Click(object sender, RoutedEventArgs e)
@@ -325,7 +325,7 @@ namespace Carcassonne
 
 		}
 		
-		private void btnBetolt_Click(object sender, RoutedEventArgs e)
+		private void btnLoad_Click(object sender, RoutedEventArgs e)
 		{
 			if (btnStartGame.Visibility == Visibility.Visible)
 			{
@@ -372,7 +372,7 @@ namespace Carcassonne
 
 		}
 
-        public void LeRakas(Button gomb)
+        private void Lerak(Button gomb)
 		{
 			gomb.Background = rctFelforditottKartya.Fill;
 			Random rnd = new Random();
@@ -403,7 +403,7 @@ namespace Carcassonne
 			JelenlegiKartya = segedTombMasodik[0];
 		}
 
-		public void Ellenoriz(Button gomb)
+		private void Ellenoriz(Button gomb)
 		{
 			string[] tomb = JelenlegiKartya.Split('_');
 
@@ -418,7 +418,7 @@ namespace Carcassonne
 				lista.Add(generaltKartya);
 				osztalyTomb[sorindex, oszlopindex] = generaltKartya;
 				KartyaTomb[sorindex, oszlopindex] = generaltKartya.Nev;
-				LeRakas(gomb);
+				Lerak(gomb);
 			}
 
 			else 
@@ -506,13 +506,13 @@ namespace Carcassonne
 				}
 				else
 				{
-					LeRakas(gomb);
+					Lerak(gomb);
 				}
 			}
 
 		}
 		
-		private void btnBefejez_Click(object sender, RoutedEventArgs e)
+		private void btnFinish_Click(object sender, RoutedEventArgs e)
 		{
 			UtHossz = 0;
 			string[,] tesztTombUt = MatrixMasolat(KartyaTomb);
@@ -560,9 +560,9 @@ namespace Carcassonne
 			}
 			beteltPalyaBonusz = BeteltPalya(MatrixMasolat(KartyaTomb));
 
-			lblNevBekuld.Visibility = Visibility.Visible;
-			txtNevBekuld.Visibility = Visibility.Visible;
-			btnNevBekuld.Visibility = Visibility.Visible;
+			lblNameSend.Visibility = Visibility.Visible;
+			txtNameSend.Visibility = Visibility.Visible;
+			btnNameSend.Visibility = Visibility.Visible;
 			
 			/*
 			CarcassoneGame ujAblak = new CarcassoneGame();
@@ -589,8 +589,8 @@ namespace Carcassonne
 		private int UtHossza(string[,] jelenlegiTerkep, int sorIndex, int oszlopIndex)
 		{
  
-			int mértÚthossz = 0;
-			int seged = 0;
+			int mertUthossz = 0;
+			int tobbElagazas = 0;
 			string masolat = jelenlegiTerkep[sorIndex, oszlopIndex];
 			jelenlegiTerkep[sorIndex, oszlopIndex] = "0";
 			
@@ -598,35 +598,35 @@ namespace Carcassonne
 			{
 				if (masolat[i] == 'U' )
 				{
-					seged++;
+					tobbElagazas++;
 				}
 			}
 
-			if (seged > 2)
+			if (tobbElagazas > 2)
 			{
-				mértÚthossz += seged-1;
+				mertUthossz += tobbElagazas-1;
 			}
 			
 			if (sorIndex > 0 && masolat[ESZAK] == 'U' && jelenlegiTerkep[sorIndex - 1, oszlopIndex] != "0")
 			{
-				mértÚthossz += UtHossza(jelenlegiTerkep, sorIndex - 1, oszlopIndex);
+				mertUthossz += UtHossza(jelenlegiTerkep, sorIndex - 1, oszlopIndex);
 			}
 
 			if (sorIndex < sorSzam - 1 && masolat[DEL] == 'U' && jelenlegiTerkep[sorIndex + 1, oszlopIndex] != "0")
 			{
-				mértÚthossz += UtHossza(jelenlegiTerkep, sorIndex + 1, oszlopIndex);
+				mertUthossz += UtHossza(jelenlegiTerkep, sorIndex + 1, oszlopIndex);
 			}
 
 			if (oszlopIndex < oszlopSzam - 1 && masolat[KELET] == 'U' && jelenlegiTerkep[sorIndex, oszlopIndex + 1] != "0")
 			{
-				mértÚthossz += UtHossza(jelenlegiTerkep, sorIndex, oszlopIndex + 1);
+				mertUthossz += UtHossza(jelenlegiTerkep, sorIndex, oszlopIndex + 1);
 			}
 
 			if (oszlopIndex > 0 && masolat[NYUGAT] == 'U' && jelenlegiTerkep[sorIndex, oszlopIndex - 1] != "0")
 			{
-				mértÚthossz += UtHossza(jelenlegiTerkep, sorIndex, oszlopIndex - 1);
+				mertUthossz += UtHossza(jelenlegiTerkep, sorIndex, oszlopIndex - 1);
 			}
-			return mértÚthossz + 1;
+			return mertUthossz + 1;
 		}
 
 		private int VarosHossza(string[,] jelenlegiTerkep, int sorIndex, int oszlopIndex)
@@ -637,14 +637,12 @@ namespace Carcassonne
 			
 			if (masolat[KOZEP] == 'V')
 			{
-				mertVaroshossz += 7;
-				return mertVaroshossz;
+				return mertVaroshossz + 7;
 			}
 
-			if (masolat[CIMER] == 'C')
+			if (masolat.Contains('C'))
 			{
-				mertVaroshossz += 2;
-				return mertVaroshossz;
+				return mertVaroshossz + 2;
 			}
 
 			else
@@ -745,17 +743,17 @@ namespace Carcassonne
 			return pont;
 		}
 
-		private void btnNrvBekuld_Click(object sender, RoutedEventArgs e)
+		private void btnNameSend_Click(object sender, RoutedEventArgs e)
 		{
 
-			if (txtNevBekuld.Text == null)
+			if (txtNameSend.Text == null)
 			{
 				MessageBox.Show("Kérem adjon meg egy nevet a mentés előtt!");
 			}
 
 			else
 			{
-				pont = $"{txtNevBekuld.Text};{UtHossz + VarosHossz + KolostorPontozas(MatrixMasolat(KartyaTomb)) + beteltPalyaBonusz};{UtHossz};{VarosHossz};" +
+				pont = $"{txtNameSend.Text};{UtHossz + VarosHossz + KolostorPontozas(MatrixMasolat(KartyaTomb)) + beteltPalyaBonusz};{UtHossz};{VarosHossz};" +
 					$"{KolostorPontozas(MatrixMasolat(KartyaTomb))};{beteltPalyaBonusz}";
 
 				List<string> pontLista = new List<string>
