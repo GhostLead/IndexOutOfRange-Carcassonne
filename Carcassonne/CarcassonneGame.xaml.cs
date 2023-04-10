@@ -51,6 +51,7 @@ namespace Carcassonne
 		int UtHossz = 0;
 		int VarosHossz = 0;
 		int beteltPalyaBonusz = 0;
+
 		public CarcassoneGame()
 		{
 			InitializeComponent();
@@ -527,7 +528,7 @@ namespace Carcassonne
 						int oszlopIndexUt = oszlopIndexMasolatUt;
 						UtHossz += UtHossza(tesztTombUt, sorIndexUt, oszlopIndexUt);
 						tesztTombUt[sorIndexMasolatUt, oszlopIndexMasolatUt] = "0";
-						
+
 					}
 				}
 			}
@@ -588,25 +589,13 @@ namespace Carcassonne
 		}
 		private int UtHossza(string[,] jelenlegiTerkep, int sorIndex, int oszlopIndex)
 		{
- 
 			int mertUthossz = 0;
-			int tobbElagazas = 0;
+			
 			string masolat = jelenlegiTerkep[sorIndex, oszlopIndex];
 			jelenlegiTerkep[sorIndex, oszlopIndex] = "0";
-			
-			for (int i = 0; i < masolat.Length; i++)
-			{
-				if (masolat[i] == 'U' )
-				{
-					tobbElagazas++;
-				}
-			}
 
-			if (tobbElagazas > 2)
-			{
-				mertUthossz += tobbElagazas-1;
-			}
 			
+
 			if (sorIndex > 0 && masolat[ESZAK] == 'U' && jelenlegiTerkep[sorIndex - 1, oszlopIndex] != "0")
 			{
 				mertUthossz += UtHossza(jelenlegiTerkep, sorIndex - 1, oszlopIndex);
@@ -626,6 +615,7 @@ namespace Carcassonne
 			{
 				mertUthossz += UtHossza(jelenlegiTerkep, sorIndex, oszlopIndex - 1);
 			}
+
 			return mertUthossz + 1;
 		}
 
@@ -634,7 +624,7 @@ namespace Carcassonne
 			int mertVaroshossz = 0;
 			string masolat = jelenlegiTerkep[sorIndex, oszlopIndex];
 			jelenlegiTerkep[sorIndex, oszlopIndex] = "0";
-			
+
 			if (masolat[KOZEP] == 'V')
 			{
 				return mertVaroshossz + 7;
