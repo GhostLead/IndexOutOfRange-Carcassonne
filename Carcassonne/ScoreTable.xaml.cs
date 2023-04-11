@@ -44,8 +44,6 @@ namespace Carcassonne
 			}
 
             PontTablazat.ItemsSource = pontozas;
-
-
 		}
 
 	}

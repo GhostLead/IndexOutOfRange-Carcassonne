@@ -286,6 +286,10 @@ namespace Carcassonne
 
 		private void btnSave_Click(object sender, RoutedEventArgs e)
 		{
+			/// <summary>
+			/// Elmenti a jelenlegi pálya állapotát
+			/// </summary>
+
 			if (btnStartGame.Visibility == Visibility.Visible)
 			{
 				MessageBox.Show("A játék még nincsen elindítva!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -303,7 +307,7 @@ namespace Carcassonne
 					}
 				}
 				tw.Close();
-				MessageBox.Show("Sikeres mentés!");
+				MessageBox.Show("A pálya mentése sikeres!!", "Sikeres mentés!", MessageBoxButton.OK, MessageBoxImage.Information);
 
 			}
 
@@ -311,6 +315,9 @@ namespace Carcassonne
 		
 		private void btnLoad_Click(object sender, RoutedEventArgs e)
 		{
+			/// <summary>
+			/// Betölti az utoljára elmentett pályát:
+			/// </summary>
 			if (btnStartGame.Visibility == Visibility.Visible)
 			{
 				MessageBox.Show("A játék még nincsen elindítva!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -352,6 +359,7 @@ namespace Carcassonne
 						osztalyTomb[sorindex,oszlopindex] = beolvasottKartya;
 					}
 				}
+				MessageBox.Show("A pálya betöltése sikeres!!", "Sikeres betöltés!", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 
 		}
@@ -488,7 +496,7 @@ namespace Carcassonne
 					KartyaTomb[sorindex, oszlopindex] = "0";
 					lista.Remove(generaltKartya);
 					osztalyTomb[sorindex, oszlopindex] = new kartya();
-					MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna!");
+					MessageBox.Show("A kártyát nem lehet lehelyezni, mivel nincs körülötte kártya amihez csatlakozni tudna, vagy nem tud csatlakozni a körülötte lévő kártyákhoz","Nem rakható le a kártya!", MessageBoxButton.OK, MessageBoxImage.Error);
 				}
 				else
 				{
@@ -722,7 +730,7 @@ namespace Carcassonne
 
 			if (txtNameSend.Text == null)
 			{
-				MessageBox.Show("Kérem adjon meg egy nevet a mentés előtt!");
+				MessageBox.Show("Kérem adjon meg egy nevet a mentés előtt!", "Sikertelen mentés", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 
 			else
@@ -761,7 +769,7 @@ namespace Carcassonne
 					}
 				}
 				CarcassoneGame cgw = new CarcassoneGame();
-				MessageBox.Show("Sikeres mentés!");
+				MessageBox.Show("A pontszám és a név mentése sikeres!!", "Sikeres mentés!", MessageBoxButton.OK, MessageBoxImage.Information); ;
 				ScoreTable stw = new ScoreTable();
 				cgw.Show();
 				this.Close();
