@@ -7,27 +7,28 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1280">
     <Grid>
-        
+        <!--Start game button-->
         <Border BorderThickness="4" BorderBrush="Black" Width="150" Height="50" CornerRadius="6" Margin=" 0 -250 320 0 ">
             <Button x:Name="btnStart" Content="Játék Indítása" FontSize="20" FontWeight="DemiBold" Height="75" Width="200" Click="btnStart_Click" Background="#ffa600" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Border>
-
+        <!--Webpage button-->
+        <Border BorderThickness="4" BorderBrush="Black" Width="150" Height="50" CornerRadius="6" Margin=" 0 -125 320 0 ">
+            <Button x:Name="btnWebpage" Content="Weboldal" Click="btnWebpage_Click" FontSize="20" FontWeight="DemiBold" Height="75" Width="200" Background="#ffa600" VerticalAlignment="Center" HorizontalAlignment="Center" ></Button>
+        </Border>
+        <!--Exit button-->
         <Border BorderThickness="4" BorderBrush="Black" Width="150" Height="50" CornerRadius="6" Margin=" 0 0 320 0 ">
             <Button x:Name="btnExit" Content="Kilépés" FontSize="20" FontWeight="DemiBold" Height="75" Width="200" Click="btnExit_Click" Background="#ffa600" VerticalAlignment="Center" HorizontalAlignment="Center" />
         </Border>
-
+        
         <Border BorderThickness="4" BorderBrush="DarkGray" Background="Gray" Width="300" Height="50"  CornerRadius="6" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin=" 5 0 0 5 ">
             <Label Content="Készítette: IndexOutOfRange" FontSize="17.5" FontStyle="Oblique" FontFamily="cascadia code" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
 
+        
         <Button x:Name="btnDisabled" Width="100" Height="100" Margin="-1150,0,0,-630" Visibility="Hidden" Click="btnDisabled_Click"/>
         <Button x:Name="btnEnabled" Width="100" Height="100" Margin="-1150,0,0,-630" Click="btnEnabled_Click"/>
 
         
-
-        <Border BorderThickness="4" BorderBrush="Black" Width="150" Height="50" CornerRadius="6" Margin=" 0 -125 320 0 ">
-            <Button x:Name="btnWebpage" Content="Weboldal" Click="btnWebpage_Click" FontSize="20" FontWeight="DemiBold" Height="75" Width="200" Background="#ffa600" VerticalAlignment="Center" HorizontalAlignment="Center" ></Button>
-        </Border>
     </Grid>
 
 

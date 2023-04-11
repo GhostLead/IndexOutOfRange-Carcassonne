@@ -44,7 +44,6 @@ namespace Carcassonne
 		const byte DEL = 4;
 		const byte NYUGAT = 6;
 		const byte KOZEP = 8;
-		const byte CIMER = 10;
 		kartya[,] osztalyTomb = new kartya[8,5];
         SoundPlayer soundPlayer = new SoundPlayer("Card-Flip-Sound.wav");
 		string pont = "";
@@ -189,19 +188,19 @@ namespace Carcassonne
 			ugTabla.Rows = sorSzam;
 			ugTabla.Columns = oszlopSzam;
 
-			for (int i = 0; i < KartyaTomb.GetLength(0); i++)
+			for (int sorIndex = 0; sorIndex < KartyaTomb.GetLength(0); sorIndex++)
 			{
-				for (int j = 0; j < KartyaTomb.GetLength(1); j++)
+				for (int oszlopIndex = 0; oszlopIndex < KartyaTomb.GetLength(1); oszlopIndex++)
 				{
 
-					KartyaTomb[i, j] = '0'.ToString();
+					KartyaTomb[sorIndex, oszlopIndex] = '0'.ToString();
 				}
 			}
-			for (int i = 0; i < ugTabla.Rows * ugTabla.Columns; i++)
+			for (int index = 0; index < ugTabla.Rows * ugTabla.Columns; index++)
 			{
 				Button gomb1 = new Button();
 				gomb1.Background = Brushes.ForestGreen;
-				gomb1.Name = $"btnTeruletek{i}";
+				gomb1.Name = $"btnTeruletek{index}";
 				gomb1.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(Button_Click));
 				ugTabla.Children.Add(gomb1);
 
@@ -296,11 +295,11 @@ namespace Carcassonne
 			else
 			{
 				TextWriter tw = new StreamWriter("new.txt");
-				for (int i = 0; i < KartyaTomb.GetLength(0); i++)
+				for (int sorIndex = 0; sorIndex < KartyaTomb.GetLength(0); sorIndex++)
 				{
-					for (int j = 0; j < KartyaTomb.GetLength(1); j++)
+					for (int oszlopIndex = 0; oszlopIndex < KartyaTomb.GetLength(1); oszlopIndex++)
 					{
-						tw.WriteLine(KartyaTomb[i, j]);
+						tw.WriteLine(KartyaTomb[sorIndex, oszlopIndex]);
 					}
 				}
 				tw.Close();
@@ -320,35 +319,35 @@ namespace Carcassonne
 
 			else
 			{
-				for (int i = 0; i < osztalyTomb.GetLength(0); i++)
+				for (int sorIndex = 0; sorIndex < osztalyTomb.GetLength(0); sorIndex++)
 				{
-					for (int j = 0; j < osztalyTomb.GetLength(1); j++)
+					for (int oszlopIndex = 0; oszlopIndex < osztalyTomb.GetLength(1); oszlopIndex++)
 					{
-						osztalyTomb[i, j] = new kartya();
+						osztalyTomb[sorIndex, oszlopIndex] = new kartya();
 					}
 				}
 
 				lista.Clear();
 				
 				string[] lines = File.ReadAllLines("new.txt");
-				for (int i = 0; i < lines.Length; i++)
+				for (int index = 0; index < lines.Length; index++)
 				{
-					if (lines[i] != "0".ToString())
+					if (lines[index] != "0".ToString())
 					{
 
 						BitmapImage bitimg = new BitmapImage();
 						bitimg.BeginInit();
-						bitimg.UriSource = new Uri(@$"Kepek\{lines[i]}.png", UriKind.RelativeOrAbsolute);
+						bitimg.UriSource = new Uri(@$"Kepek\{lines[index]}.png", UriKind.RelativeOrAbsolute);
 						bitimg.EndInit();
-						int oszlopindex = i % oszlopSzam;
-						int sorindex = i / oszlopSzam;
-						KartyaTomb[sorindex, oszlopindex] = lines[i];
-						((Button)ugTabla.Children[i]).Background = new ImageBrush(bitimg);
-						((Button)ugTabla.Children[i]).RemoveHandler(ButtonBase.ClickEvent, new RoutedEventHandler(Button_Click));
-						((Button)ugTabla.Children[i]).AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OccupiedTileErrorMessage));
-						string[] tomb = lines[i].Split("_");
+						int oszlopindex = index % oszlopSzam;
+						int sorindex = index / oszlopSzam;
+						KartyaTomb[sorindex, oszlopindex] = lines[index];
+						((Button)ugTabla.Children[index]).Background = new ImageBrush(bitimg);
+						((Button)ugTabla.Children[index]).RemoveHandler(ButtonBase.ClickEvent, new RoutedEventHandler(Button_Click));
+						((Button)ugTabla.Children[index]).AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OccupiedTileErrorMessage));
+						string[] tomb = lines[index].Split("_");
 
-						kartya beolvasottKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), lines[i], Convert.ToChar(tomb[5]));
+						kartya beolvasottKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), lines[index], Convert.ToChar(tomb[5]));
 						lista.Add(beolvasottKartya);
 						osztalyTomb[sorindex,oszlopindex] = beolvasottKartya;
 					}
@@ -501,42 +500,42 @@ namespace Carcassonne
 		private void btnFinish_Click(object sender, RoutedEventArgs e)
 		{
 			UtHossz = 0;
-			string[,] tesztTombUt = MatrixMasolat(KartyaTomb);
-			for (int sorIndexMasolatUt = 0; sorIndexMasolatUt < tesztTombUt.GetLength(0); sorIndexMasolatUt++)
+			string[,] MatrixUt = MatrixMasolat(KartyaTomb);
+			for (int sorIndexMasolatUt = 0; sorIndexMasolatUt < MatrixUt.GetLength(0); sorIndexMasolatUt++)
 			{
-				for (int oszlopIndexMasolatUt = 0; oszlopIndexMasolatUt < tesztTombUt.GetLength(1); oszlopIndexMasolatUt++)
+				for (int oszlopIndexMasolatUt = 0; oszlopIndexMasolatUt < MatrixUt.GetLength(1); oszlopIndexMasolatUt++)
 				{
-					if (tesztTombUt[sorIndexMasolatUt, oszlopIndexMasolatUt].Contains('U'))
+					if (MatrixUt[sorIndexMasolatUt, oszlopIndexMasolatUt].Contains('U'))
 					{
 
 						int sorIndexUt = sorIndexMasolatUt;
 						int oszlopIndexUt = oszlopIndexMasolatUt;
-						UtHossz += UtHossza(tesztTombUt, sorIndexUt, oszlopIndexUt);
-						tesztTombUt[sorIndexMasolatUt, oszlopIndexMasolatUt] = "0";
+						UtHossz += UtHossza(MatrixUt, sorIndexUt, oszlopIndexUt);
+						MatrixUt[sorIndexMasolatUt, oszlopIndexMasolatUt] = "0";
 
 					}
 				}
 			}
 
 			VarosHossz = 0;
-			string[,] tesztTombVaros = MatrixMasolat(KartyaTomb);
-			for (int sorIndexMasolatVaros = 0; sorIndexMasolatVaros < tesztTombVaros.GetLength(0); sorIndexMasolatVaros++)
+			string[,] MatrixVaros = MatrixMasolat(KartyaTomb);
+			for (int sorIndexMasolatVaros = 0; sorIndexMasolatVaros < MatrixVaros.GetLength(0); sorIndexMasolatVaros++)
 			{
-				for (int oszlopIndexMasolatVaros = 0; oszlopIndexMasolatVaros < tesztTombVaros.GetLength(1); oszlopIndexMasolatVaros++)
+				for (int oszlopIndexMasolatVaros = 0; oszlopIndexMasolatVaros < MatrixVaros.GetLength(1); oszlopIndexMasolatVaros++)
 				{
-					if (tesztTombVaros[sorIndexMasolatVaros, oszlopIndexMasolatVaros].Contains('V'))
+					if (MatrixVaros[sorIndexMasolatVaros, oszlopIndexMasolatVaros].Contains('V'))
 					{
 						int sorIndexVaros = sorIndexMasolatVaros;
 						int oszlopIndexVaros = oszlopIndexMasolatVaros;
-						if (tesztTombVaros[sorIndexMasolatVaros, oszlopIndexMasolatVaros][KOZEP] == 'V')
+						if (MatrixVaros[sorIndexMasolatVaros, oszlopIndexMasolatVaros][KOZEP] == 'V')
 						{
-							VarosHossz += VarosHossza(tesztTombVaros, sorIndexVaros, oszlopIndexVaros);
-							tesztTombVaros[sorIndexMasolatVaros, oszlopIndexMasolatVaros] = "0";
+							VarosHossz += VarosHossza(MatrixVaros, sorIndexVaros, oszlopIndexVaros);
+							MatrixVaros[sorIndexMasolatVaros, oszlopIndexMasolatVaros] = "0";
 						}
 						else
 						{
-							VarosHossz += (VarosHossza(tesztTombVaros, sorIndexVaros,oszlopIndexVaros))*2;
-							tesztTombVaros[sorIndexMasolatVaros,oszlopIndexMasolatVaros] = "0";
+							VarosHossz += (VarosHossza(MatrixVaros, sorIndexVaros,oszlopIndexVaros))*2;
+							MatrixVaros[sorIndexMasolatVaros,oszlopIndexMasolatVaros] = "0";
 
 						}
 						
@@ -563,11 +562,11 @@ namespace Carcassonne
 		private string[,] MatrixMasolat(string[,] matrix)
 		{
 			string[,] masolatTomb = new string[matrix.GetLength(0), matrix.GetLength(1)];
-			for (int i = 0; i < masolatTomb.GetLength(0); i++)
+			for (int sorIndex = 0; sorIndex < masolatTomb.GetLength(0); sorIndex++)
 			{
-				for (int j = 0; j < masolatTomb.GetLength(1); j++)
+				for (int oszlopIndex = 0; oszlopIndex < masolatTomb.GetLength(1); oszlopIndex++)
 				{
-					masolatTomb[i, j] = matrix[i, j];
+					masolatTomb[sorIndex, oszlopIndex] = matrix[sorIndex, oszlopIndex];
 				}
 			}
 			return masolatTomb;
@@ -704,11 +703,11 @@ namespace Carcassonne
 		private int BeteltPalya(string[,] jelenlegiTerkep)
 		{
 			int pont = 10;	
-			for (int i = 0; i < jelenlegiTerkep.GetLength(0); i++)
+			for (int sorIndex = 0; sorIndex < jelenlegiTerkep.GetLength(0); sorIndex++)
 			{
-				for (int j = 0; j < jelenlegiTerkep.GetLength(1); j++)
+				for (int oszlopIndex = 0; oszlopIndex < jelenlegiTerkep.GetLength(1); oszlopIndex++)
 				{
-					if (jelenlegiTerkep[i,j] == "0")
+					if (jelenlegiTerkep[sorIndex,oszlopIndex] == "0")
 					{
 						pont = 0;
 						break;

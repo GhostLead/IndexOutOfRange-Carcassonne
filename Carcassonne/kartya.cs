@@ -16,8 +16,6 @@ namespace Carcassonne
 		char miKozep;
 		char cimer;
 		bool uresKartya;
-		const int SOROK_SZAMA = 8;
-		const int OSZLOPOK_SZAMA = 5;
 		public kartya(char miFel, char miJobb, char miLe, char miBal, char miKozep, string nev, char cimer)
 		{
 			this.miFel = miFel;
@@ -83,8 +81,5 @@ namespace Carcassonne
 				return kartyNev.nev;
 			}
 		}
-		
-		
-		
 	}
 }

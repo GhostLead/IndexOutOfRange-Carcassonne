@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        
         xmlns:local="clr-namespace:Carcassonne"
         mc:Ignorable="d"
         Title="Carcassonne" Height="768" Width="1280">
@@ -39,6 +38,7 @@
         <Button x:Name="btnJobbraFordit"  FontSize="20"  Width="30" Height="30" Click="btnJobbraFordit_Click" Margin="795,580,415,102"/>
         <Button x:Name="btnBalraFordit"  FontSize="20" Width="30" Height="30" Margin="640,580,570,102" Click="btnBalraFordit_Click"/>
 
+        
         <Label Visibility="Hidden" x:Name="lblNameSend" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Játékos neve:" FontSize="50"></Label>
         <TextBox Visibility="Hidden" x:Name="txtNameSend" Width="250" Height="50" FontSize="20" Margin="815,692,215,10"></TextBox>
         <Button Visibility="Hidden" Content="OK" FontSize="25" x:Name="btnNameSend" Margin="1070,684,140,8" Click="btnNameSend_Click" RenderTransformOrigin="0.204,0.38"/>

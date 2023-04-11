@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ScoreTable" Height="450" Width="800">
     <Grid>
-
+        <!--Score table-->
         <DataGrid x:Name="PontTablazat" IsReadOnly="True" AutoGenerateColumns="False" Margin="10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Játékos Neve" Binding="{Binding Nev}"  MinWidth="90" Width="*"/>
@@ -18,6 +18,5 @@
                 <DataGridTextColumn Header="Bónusz" Binding="{Binding Bonusz}" MinWidth="30" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-
     </Grid>
 </Window>
