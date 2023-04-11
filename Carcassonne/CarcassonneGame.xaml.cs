@@ -507,65 +507,74 @@ namespace Carcassonne
 		
 		private void btnFinish_Click(object sender, RoutedEventArgs e)
 		{
-			UtHossz = 0;
-			string[,] MatrixUt = MatrixMasolat(KartyaTomb);
-			for (int sorIndexMasolatUt = 0; sorIndexMasolatUt < MatrixUt.GetLength(0); sorIndexMasolatUt++)
+            if (btnStartGame.Visibility == Visibility.Visible)
+            {
+                MessageBox.Show("A játék még nincsen elindítva!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
+			else
 			{
-				for (int oszlopIndexMasolatUt = 0; oszlopIndexMasolatUt < MatrixUt.GetLength(1); oszlopIndexMasolatUt++)
+
+			
+				UtHossz = 0;
+				string[,] MatrixUt = MatrixMasolat(KartyaTomb);
+				for (int sorIndexMasolatUt = 0; sorIndexMasolatUt < MatrixUt.GetLength(0); sorIndexMasolatUt++)
 				{
-					if (MatrixUt[sorIndexMasolatUt, oszlopIndexMasolatUt].Contains('U'))
+					for (int oszlopIndexMasolatUt = 0; oszlopIndexMasolatUt < MatrixUt.GetLength(1); oszlopIndexMasolatUt++)
 					{
+						if (MatrixUt[sorIndexMasolatUt, oszlopIndexMasolatUt].Contains('U'))
+						{
 
-						int sorIndexUt = sorIndexMasolatUt;
-						int oszlopIndexUt = oszlopIndexMasolatUt;
-						UtHossz += UtHossza(MatrixUt, sorIndexUt, oszlopIndexUt);
-						MatrixUt[sorIndexMasolatUt, oszlopIndexMasolatUt] = "0";
+							int sorIndexUt = sorIndexMasolatUt;
+							int oszlopIndexUt = oszlopIndexMasolatUt;
+							UtHossz += UtHossza(MatrixUt, sorIndexUt, oszlopIndexUt);
+							MatrixUt[sorIndexMasolatUt, oszlopIndexMasolatUt] = "0";
 
+						}
 					}
 				}
-			}
 
-			VarosHossz = 0;
-			string[,] MatrixVaros = MatrixMasolat(KartyaTomb);
-			for (int sorIndexMasolatVaros = 0; sorIndexMasolatVaros < MatrixVaros.GetLength(0); sorIndexMasolatVaros++)
-			{
-				for (int oszlopIndexMasolatVaros = 0; oszlopIndexMasolatVaros < MatrixVaros.GetLength(1); oszlopIndexMasolatVaros++)
+				VarosHossz = 0;
+				string[,] MatrixVaros = MatrixMasolat(KartyaTomb);
+				for (int sorIndexMasolatVaros = 0; sorIndexMasolatVaros < MatrixVaros.GetLength(0); sorIndexMasolatVaros++)
 				{
-					if (MatrixVaros[sorIndexMasolatVaros, oszlopIndexMasolatVaros].Contains('V'))
+					for (int oszlopIndexMasolatVaros = 0; oszlopIndexMasolatVaros < MatrixVaros.GetLength(1); oszlopIndexMasolatVaros++)
 					{
-						int sorIndexVaros = sorIndexMasolatVaros;
-						int oszlopIndexVaros = oszlopIndexMasolatVaros;
-						if (MatrixVaros[sorIndexMasolatVaros, oszlopIndexMasolatVaros][KOZEP] == 'V')
+						if (MatrixVaros[sorIndexMasolatVaros, oszlopIndexMasolatVaros].Contains('V'))
 						{
-							VarosHossz += VarosHossza(MatrixVaros, sorIndexVaros, oszlopIndexVaros);
-							MatrixVaros[sorIndexMasolatVaros, oszlopIndexMasolatVaros] = "0";
-						}
-						else
-						{
-							VarosHossz += (VarosHossza(MatrixVaros, sorIndexVaros,oszlopIndexVaros))*2;
-							MatrixVaros[sorIndexMasolatVaros,oszlopIndexMasolatVaros] = "0";
+							int sorIndexVaros = sorIndexMasolatVaros;
+							int oszlopIndexVaros = oszlopIndexMasolatVaros;
+							if (MatrixVaros[sorIndexMasolatVaros, oszlopIndexMasolatVaros][KOZEP] == 'V')
+							{
+								VarosHossz += VarosHossza(MatrixVaros, sorIndexVaros, oszlopIndexVaros);
+								MatrixVaros[sorIndexMasolatVaros, oszlopIndexMasolatVaros] = "0";
+							}
+							else
+							{
+								VarosHossz += (VarosHossza(MatrixVaros, sorIndexVaros,oszlopIndexVaros))*2;
+								MatrixVaros[sorIndexMasolatVaros,oszlopIndexMasolatVaros] = "0";
 
-						}
+							}
 						
 					
+						}
 					}
 				}
-			}
-			beteltPalyaBonusz = BeteltPalya(MatrixMasolat(KartyaTomb));
+				beteltPalyaBonusz = BeteltPalya(MatrixMasolat(KartyaTomb));
 
-			lblNameSend.Visibility = Visibility.Visible;
-			txtNameSend.Visibility = Visibility.Visible;
-			btnNameSend.Visibility = Visibility.Visible;
-			
-			/*
-			CarcassoneGame ujAblak = new CarcassoneGame();
-			Application.Current.MainWindow = ujAblak;
-			ujAblak.Show();
-			this.Close();
-			*/
-			
-			
-		}
+				lblNameSend.Visibility = Visibility.Visible;
+				txtNameSend.Visibility = Visibility.Visible;
+				btnNameSend.Visibility = Visibility.Visible;
+
+					/*
+					CarcassoneGame ujAblak = new CarcassoneGame();
+					Application.Current.MainWindow = ujAblak;
+					ujAblak.Show();
+					this.Close();
+					*/
+
+            }
+        }
 
 		private string[,] MatrixMasolat(string[,] matrix)
 		{

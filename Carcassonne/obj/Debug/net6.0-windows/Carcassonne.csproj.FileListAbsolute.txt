@@ -143,3 +143,6 @@ F:\Us\Csanád\carcassonne\IndexOutOfRange-Carcassonne-main\Carcassonne\obj\Debug
 C:\Users\Tomi\Documents\GitHub\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\DataGridDictionary.baml
 C:\Users\Tomi\Documents\GitHub\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\ScoreTable.g.cs
 C:\Users\Tomi\Documents\GitHub\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\ScoreTable.baml
+F:\Us\Csanád\carcassonneGithub\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\DataGridDictionary.baml
+F:\Us\Csanád\carcassonneGithub\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\ScoreTable.g.cs
+F:\Us\Csanád\carcassonneGithub\IndexOutOfRange-Carcassonne\Carcassonne\obj\Debug\net6.0-windows\ScoreTable.baml
