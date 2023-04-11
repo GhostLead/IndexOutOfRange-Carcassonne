@@ -33,7 +33,6 @@ namespace Carcassonne
 
             
             string[] lines = File.ReadAllLines("ScoreTableData.txt");
-            //List<ScoreClass> scores = new List<ScoreClass>();
             
 
 			for (int i = 0; i < lines.Length; i++)

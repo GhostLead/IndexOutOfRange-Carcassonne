@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szabályok - IndexOutOfRange</title>
+    <link rel="stylesheet" href="RulesStyle.css">
+    
+</head>
+<body>
+    <a href="#" class="to-top">
+        👆
+    </a>
+    <div id="Caption">
+        <h1>Szabályok</h1>
+    </div>
+
+    <div id="MainContainer">
+        <div>
+            <h2>Játékosszám</h2>
+            <p>A játékot egy játékos játsza.</p>
+        </div>
+    
+        <div>
+            <h2>Játék menete</h2>
+            <p>
+                Adva van egy 5x8-as négyzetrácsos játéklap. A számítógép minden 
+                körben kiválaszt egy véletlenszerű területkártyát, <br>
+                amit a játákosnak a lentebb írt szabályokhoz megfelelően le kell raknia.
+            </p>
+        </div>
+        
+        <div>
+            <h2>Területkártya elhelyezési szabályok</h2>
+            <p>
+                <ul>
+                    <li>Az első kártyát tetszőleges mezőre helyezhetjük</li>
+                    <li>A többi kártyát úgy kell leraknia a játékosnak, hogy legalább egy odaluk illeszkedjen egy már lerakott kártyához</li>
+                    <li>Nem elég ha a kártyának csak a sarka érintkezik a kártyával!</li>
+                    <li>Minden kártyán lévő rétnek, útnak, és városrészletnek folytatódnia kell! Ez azt jelenti, hogy a lapok szélén,<br> út csak úttal, rét csak réttel,
+                        város csak várossal érintkezhet, és a kártya szélén kifutó útnak a másik kártán folytatódnia kell.
+                    </li>
+                </ul>
+            </p>
+        </div>
+    
+        <div>
+            <h2>Pontozás</h2>
+            <p>
+                <ul>
+                    <li>A városok értéke annyiszor 2 pont ahány kártyából áll az adott város.</li>
+                    <li>Az utak értéke annyiszor 1 pont, ahány kártyából áll.</li>
+                    <li>Egy befejezett útért plusz 2 pont jár.</li>
+                    <li>Egy befejezett városért plusz 5 pont jár.</li>
+                    <li>A kolostor kártya annyi pontot ér, ahány szomszédos kártája van.</li>
+                    <li>Ha a játék során betelt a játéktér akkor a játékos kap plusz 10 pontot.</li>
+                </ul>
+            </p>
+        </div>
+        
+        <div>
+            <h2>Játék vége</h2>
+            <p>
+                A játék többféleképpen is véget érthet:
+                <ul>
+                    <li>A játékos nem tudja szabályosan lehelyekzni a területkártyát</li>
+                    <li>Betelt a játéktér</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+    
+    <div id="ButtonContainer">
+        <a href="UserManual.html" target="_blank"><button class="button-shrink">Programhasználat</button></a>
+    </div>
+
+    <script src="RulesScript.js"></script>
+</body>
+</html>

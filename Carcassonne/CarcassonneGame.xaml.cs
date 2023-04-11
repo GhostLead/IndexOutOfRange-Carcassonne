@@ -62,8 +62,6 @@ namespace Carcassonne
 
 			NavbarButtonsHidden();
 
-
-
         }
 
 		private void Button_Click(object sender, RoutedEventArgs e)
@@ -77,11 +75,6 @@ namespace Carcassonne
 			MainWindow mw = new MainWindow();
 			mw.Show();
 			this.Close();
-
-		}
-
-		private void btnSettings_Click(object sender, RoutedEventArgs e)
-		{
 
 		}
 
@@ -166,6 +159,19 @@ namespace Carcassonne
 
 			var fileCount = (from file in Directory.EnumerateFiles(@"Kepek\", "*.png", SearchOption.AllDirectories)
 							 select file).Count();
+
+
+			BitmapImage jobbraForgatHatter = new BitmapImage();
+			jobbraForgatHatter.BeginInit();
+			jobbraForgatHatter.UriSource = new Uri(@"Egyeb\RotateButtonRight.jpg", UriKind.RelativeOrAbsolute);
+			jobbraForgatHatter.EndInit();
+			btnJobbraFordit.Background = new ImageBrush(jobbraForgatHatter);
+
+			BitmapImage balraForgatHatter = new BitmapImage();
+			balraForgatHatter.BeginInit();
+			balraForgatHatter.UriSource = new Uri(@"Egyeb\RotateButtonLeft.jpg", UriKind.RelativeOrAbsolute);
+			balraForgatHatter.EndInit();
+			btnBalraFordit.Background = new ImageBrush(balraForgatHatter);
 		}
 
 		private void SetBackground()
@@ -197,23 +203,11 @@ namespace Carcassonne
 				gomb1.Background = Brushes.ForestGreen;
 				gomb1.Name = $"btnTeruletek{i}";
 				gomb1.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(Button_Click));
-				/*
-				if (i == 17)
-				{
-					BitmapImage bitimg = new BitmapImage();
-					bitimg.BeginInit();
-					bitimg.UriSource = new Uri(@"Kepek\U_R_U_R_S.png", UriKind.RelativeOrAbsolute);
-					bitimg.EndInit();
-					gomb1.Background = new ImageBrush(bitimg);
-					KartyaTomb[3, 2] = "U_R_U_R_S";
-					gomb1.RemoveHandler(ButtonBase.ClickEvent, new RoutedEventHandler(Button_Click));
-					gomb1.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OccupiedTileErrorMessage));
-
-				}
-				*/
 				ugTabla.Children.Add(gomb1);
 
 			}
+
+
 		}
 
 		private void NavbarButtonsHidden()
@@ -257,6 +251,7 @@ namespace Carcassonne
 				rctFelforditottKartya.Fill = new ImageBrush(bitimg);
 
 				JelenlegiKartya = uj_nev;
+				
 			}
 
 		}
@@ -292,18 +287,6 @@ namespace Carcassonne
 
 		private void btnSave_Click(object sender, RoutedEventArgs e)
 		{
-			/*
-			string[] sorok = new string[KartyaTomb.GetLength(0)];
-
-			for (int i = 0; i < KartyaTomb.GetLength(0); i++)
-			{
-				for (int j = 0; j < KartyaTomb.GetLength(1); j++)
-				{
-					sorok[i] += KartyaTomb[i, j];
-				}
-			}
-			File.WriteAllLines("nem.txt", sorok);
-			*/
 			if (btnStartGame.Visibility == Visibility.Visible)
 			{
 				MessageBox.Show("A játék még nincsen elindítva!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -321,6 +304,7 @@ namespace Carcassonne
 					}
 				}
 				tw.Close();
+				MessageBox.Show("Sikeres mentés!");
 
 			}
 
@@ -385,7 +369,7 @@ namespace Carcassonne
 
 			string[] segedTombElso = generaltNev.Split('\\');
 			string[] segedTombMasodik = segedTombElso[1].Split('.');
-
+			
 
 
 			BitmapImage bitimg = new BitmapImage();
@@ -399,13 +383,15 @@ namespace Carcassonne
 			rctFelforditottKartya.Fill = new ImageBrush(bitimg);
 			gomb.RemoveHandler(ButtonBase.ClickEvent, new RoutedEventHandler(Button_Click));
 			gomb.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OccupiedTileErrorMessage));
-
+			
 
 			JelenlegiKartya = segedTombMasodik[0];
+			
 		}
 
 		private void Ellenoriz(Button gomb)
 		{
+
 			string[] tomb = JelenlegiKartya.Split('_');
 
 
@@ -422,21 +408,21 @@ namespace Carcassonne
 				Lerak(gomb);
 			}
 
-			else 
-			{ 
+			else
+			{
 
 				kartya generaltKartya = new kartya(Convert.ToChar(tomb[0]), Convert.ToChar(tomb[1]), Convert.ToChar(tomb[2]), Convert.ToChar(tomb[3]), Convert.ToChar(tomb[4]), JelenlegiKartya, Convert.ToChar(tomb[5]));
 				lista.Add(generaltKartya);
 				osztalyTomb[sorindex, oszlopindex] = generaltKartya;
 				KartyaTomb[sorindex, oszlopindex] = generaltKartya.Nev;
 
-		
+
 
 				bool vanFent = false;
 				bool vanJobb = false;
 				bool vanLent = false;
 				bool vanBal = false;
-			
+
 				bool fentEllenorzes = true;
 				bool jobbOldaliEllenorzes = true;
 				bool lenitEllenorzes = true;
@@ -454,7 +440,7 @@ namespace Carcassonne
 						}
 
 					}
-				
+
 				}
 				if (oszlopindex + 1 < KartyaTomb.GetLength(1))
 				{
@@ -469,12 +455,12 @@ namespace Carcassonne
 					}
 
 				}
-				if (sorindex+1 < KartyaTomb.GetLength(0))
+				if (sorindex + 1 < KartyaTomb.GetLength(0))
 				{
 					if (KartyaTomb[sorindex + 1, oszlopindex] != "0")
 					{
 						vanLent = true;
-						if ( vanLent && KartyaTomb[sorindex, oszlopindex][DEL] != KartyaTomb[sorindex + 1, oszlopindex][ESZAK])
+						if (vanLent && KartyaTomb[sorindex, oszlopindex][DEL] != KartyaTomb[sorindex + 1, oszlopindex][ESZAK])
 						{
 							lenitEllenorzes = false;
 						}
@@ -483,7 +469,7 @@ namespace Carcassonne
 
 				}
 
-				if (oszlopindex -1 >= 0)
+				if (oszlopindex - 1 >= 0)
 				{
 					if (KartyaTomb[sorindex, oszlopindex - 1] != "0")
 					{
@@ -510,7 +496,6 @@ namespace Carcassonne
 					Lerak(gomb);
 				}
 			}
-
 		}
 		
 		private void btnFinish_Click(object sender, RoutedEventArgs e)
@@ -760,10 +745,31 @@ namespace Carcassonne
 					}
 					sw.Close();
 				}
+				lista.Clear();
+				for (int sorIndex = 0; sorIndex < KartyaTomb.GetLength(0); sorIndex++)
+				{
+					for (int oszlopIndex = 0; oszlopIndex < KartyaTomb.GetLength(1); oszlopIndex++)
+					{
+						KartyaTomb[sorIndex, oszlopIndex] = "0";
+					}
+				}
+
+				for (int sorIndex = 0; sorIndex < osztalyTomb.GetLength(0); sorIndex++)
+				{
+					for (int oszlopIndex = 0; oszlopIndex < osztalyTomb.GetLength(1); oszlopIndex++)
+					{
+						osztalyTomb[sorIndex, oszlopIndex] = new kartya();
+					}
+				}
+				CarcassoneGame cgw = new CarcassoneGame();
+				MessageBox.Show("Sikeres mentés!");
 				ScoreTable stw = new ScoreTable();
+				cgw.Show();
+				this.Close();
 				stw.Show();
 
 			}
 		}
+
 	}
 }

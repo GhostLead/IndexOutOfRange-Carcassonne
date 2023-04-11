@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programhasználat - IndexOutOfRange</title>
+    <link rel="stylesheet" href="UserManualStyle.css">
+
+</head>
+
+<body>
+
+    <div id="Caption">
+        <h1>Programhasználat</h1>
+    </div>
+
+    <div id="MainContainer">
+        <div>
+            <h2>Főmenü</h2>
+            <div id="pictureContainer">
+                <img src="Kepek/MainMenu.png" alt="MainMenu">
+                <div>
+                    <p>A főmenüben a lehetőségek a következők:</p>
+                    <ul>
+                        <li>Játék Indítása</li>
+                        <li>Háttérzene némítása vagy felhangosítása</li>
+                        <li>Kilépés</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div>
+            <h2>Játékmenet</h2>
+            <div class="GameplayContainer">
+                <img src="Kepek/StartGame.png" alt="StartGame">
+                <p>A játék a kezdés gombra kattintva elindul.</p>
+            </div>
+            <div class="GameplayContainer">
+                <img src="Kepek/Game1.png" alt="Game1">
+                <p>A játék során a képernyő közepén lévő felfordított kártyát <br>
+                    (szükség esetén) forgatva le kell helyezni a pálya <br>
+                     különböző részeire.
+                </p>
+            </div>
+            <div class="GameplayContainer">
+                <img src="Kepek/SideBar.png" alt="SideBar" id="sidebarimg">
+                <p id="sidebartext">A jobb oldalt lévő menügombra kattintva <br> megjelenik egy oldalsó menü.</p>
+            </div>
+            <div class="GameplayContainer">
+                <img src="Kepek/Save.png" alt="Save">
+                <p>A <i>mentés</i> gombra kattintva a játékos <br>
+                     el tudja menteni az aktuális játék helyzetét.</p>
+            </div>
+        </div>
+
+
+        <div>
+            <h2>Ponttáblázat</h2>
+            <div id="ScoreTableContainer">
+                <img src="Kepek/ScoreTable.png" alt="ScoreTable">
+                <p>A játék végén a játék megmutatja az eddigi <br>
+                     játékokban elért pontszámokat és a játékos nevét is.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="ButtonContainer">
+        <a href="Rules.html" target="_blank"><button class="button-shrink">Szabályok</button></a>
+    </div>
+
+    <a href="#" class="to-top">
+        👆
+    </a>
+
+    <script src="RulesScript.js"></script>
+
+</body>
+
+</html>

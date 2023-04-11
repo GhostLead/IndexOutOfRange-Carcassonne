@@ -91,5 +91,15 @@ namespace Carcassonne
             btnDisabled.Visibility = Visibility.Hidden;
             btnEnabled.Visibility = Visibility.Visible;
         }
-    }
+
+        private void btnWebpage_Click(object sender, RoutedEventArgs e)
+        {
+			var p = new Process();
+			p.StartInfo = new ProcessStartInfo("Website\\MainMenu.html")
+			{
+				UseShellExecute = true
+			};
+			p.Start();
+		}
+	}
 }
