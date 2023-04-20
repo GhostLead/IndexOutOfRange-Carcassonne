@@ -780,8 +780,8 @@ namespace Carcassonne
 				CarcassoneGame cgw = new CarcassoneGame();
 				MessageBox.Show("A pontszám és a név mentése sikeres!!", "Sikeres mentés!", MessageBoxButton.OK, MessageBoxImage.Information); ;
 				ScoreTable stw = new ScoreTable();
-				cgw.Show();
 				this.Close();
+				cgw.Show();
 				stw.Show();
 
 			}

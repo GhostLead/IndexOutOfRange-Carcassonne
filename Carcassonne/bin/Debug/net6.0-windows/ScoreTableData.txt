@@ -1,1 +1,3 @@
 Szög Elek;42;11;31;0;0
+Gipsz Jakab;20;6;14;0;0
+Jakab Gipsz;21;7;14;0;0
