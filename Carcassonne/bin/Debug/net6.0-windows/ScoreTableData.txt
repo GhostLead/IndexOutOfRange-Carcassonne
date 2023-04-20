@@ -1,3 +1,6 @@
 Szög Elek;42;11;31;0;0
 Gipsz Jakab;20;6;14;0;0
-Jakab Gipsz;21;7;14;0;0
+Barizs Márton;47;9;22;6;10
+Gajdos Csanád;58;19;33;6;0
+Beke Tamás;43;7;24;3;10
+Gipsz Jakab;46;9;30;7;0
